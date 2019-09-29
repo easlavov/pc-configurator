@@ -13,21 +13,15 @@ namespace PCConfigurator.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private readonly ComponentTypesManager componentTypesManager;
 
-        public HomeController(ILogger<HomeController> logger, ComponentTypesManager componentTypesManager)
+        public HomeController(ILogger<HomeController> logger)
         {
-            if (componentTypesManager == null)
-                throw new ArgumentNullException(nameof(componentTypesManager));
-
             _logger = logger;
-            this.componentTypesManager = componentTypesManager;
         }
 
         public IActionResult Index()
         {
-            var componentTypes = componentTypesManager.LoadAll();
-            return View(new HomeViewModel { ComponentTypes = componentTypes });
+            return View();
         }
 
         public IActionResult Privacy()

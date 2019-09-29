@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PCConfigurator.Web.Models
 {
-    public class HomeViewModel
+    public class ComponentTypesIndexViewModel
     {
         public IEnumerable<ComponentType> ComponentTypes { get; set; }
     }
