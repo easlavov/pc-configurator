@@ -21,7 +21,16 @@
             Price = price;
         }
 
-        public ComponentType ComponentType { get; }
+        public Component(long id, string name, decimal price)
+            : base (id)
+        {
+            Name = name;
+            Price = price;
+        }
+
+        public long ComponentTypeId { get; set; }
+
+        public ComponentType ComponentType { get; set; }
 
         public string Name { get; }
 

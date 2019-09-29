@@ -3,6 +3,7 @@
     using PCConfigurator.Core;
 
     using Microsoft.EntityFrameworkCore;
+    using System;
 
     public class PCConfiguratorDBContext : DbContext
     {
@@ -19,6 +20,12 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            AddComponentType(modelBuilder);
+            AddComponent(modelBuilder);
+        }
+
+        private static void AddComponentType(ModelBuilder modelBuilder)
+        {
             modelBuilder.Entity<ComponentType>().ToTable("component_types");
             modelBuilder.Entity<ComponentType>()
                 .Property(t => t.Id).HasColumnName("id").UseIdentityColumn();
@@ -32,6 +39,63 @@
                     new ComponentType(2, "CPU"),
                     new ComponentType(3, "GPU"),
                     new ComponentType(4, "RAM")
+                );
+        }
+
+        private void AddComponent(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Component>().ToTable("components");
+            modelBuilder.Entity<Component>()
+                .Property(t => t.Id).HasColumnName("id").UseIdentityColumn();
+            modelBuilder.Entity<Component>()
+                .Property(t => t.Name).HasColumnName("name").IsRequired();
+            modelBuilder.Entity<Component>()
+                .HasKey(t => t.Id);
+
+            modelBuilder.Entity<Component>().Property(x => x.ComponentTypeId).HasColumnName("component_type_id");
+            modelBuilder.Entity<Component>()
+                .HasOne(t => t.ComponentType).WithOne()
+                .HasForeignKey<Component>(c => c.ComponentTypeId)
+                .OnDelete(DeleteBehavior.Restrict);
+            modelBuilder.Entity<Component>()
+                .Property(t => t.Price).HasColumnName("price").IsRequired();
+            
+            modelBuilder.Entity<Component>().HasData(
+                    new 
+                    { 
+                        Id = 1l,
+                        ComponentTypeId = 1l,
+                        Name = "MSI Z390-A PRO",
+                        Price = 200m
+                    },
+                    new
+                    {
+                        Id = 2l,
+                        ComponentTypeId = 2l,
+                        Name = "AMD FX-8150",
+                        Price = 150m
+                    },
+                    new 
+                    {
+                        Id = 3l,
+                        ComponentTypeId = 2l,
+                        Name = "Intel i5-6500T",
+                        Price = 180m
+                    },
+                    new
+                    {
+                        Id = 4l,
+                        ComponentTypeId = 3l,
+                        Name = "GTX 960",
+                        Price = 230m
+                    },
+                    new
+                    {
+                        Id = 5l,
+                        ComponentTypeId = 4l,
+                        Name = "Corsair Vengeance LED 16Gb (2x8GB) DDR4 3000MHz",
+                        Price = 230m
+                    }
                 );
         }
 

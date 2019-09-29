@@ -11,6 +11,12 @@
     <Compile Remove="Migrations\20190929091544_AddComponentType.Designer.cs" />
     <Compile Remove="Migrations\20190929091658_AddComponentType.cs" />
     <Compile Remove="Migrations\20190929091658_AddComponentType.Designer.cs" />
+    <Compile Remove="Migrations\20190929180547_AddComponent.cs" />
+    <Compile Remove="Migrations\20190929180547_AddComponent.Designer.cs" />
+    <Compile Remove="Migrations\20190929180809_AddComponent.cs" />
+    <Compile Remove="Migrations\20190929180809_AddComponent.Designer.cs" />
+    <Compile Remove="Migrations\20190929182345_AddComponent.cs" />
+    <Compile Remove="Migrations\20190929182345_AddComponent.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
