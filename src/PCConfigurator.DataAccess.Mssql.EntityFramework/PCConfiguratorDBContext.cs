@@ -3,27 +3,18 @@
     using PCConfigurator.Core;
 
     using Microsoft.EntityFrameworkCore;
-    using Microsoft.EntityFrameworkCore.Storage;
 
-    public class PCConfiguratorDBContext : DbContext, IDbContext
+    public class PCConfiguratorDBContext : DbContext
     {
-        private const string ConnectionString = @"Server=.\SQLEXPRESS;Database=PCConfigurator;Trusted_Connection=True;";
+        public PCConfiguratorDBContext(DbContextOptions<PCConfiguratorDBContext> options)
+            : base(options)
+        { }
 
         public DbSet<ComponentType> ComponentTypes { get; set; }
         
         public DbSet<T> GetSet<T>() where T : class
         {
             return this.GetSet<T>();
-        }
-
-        void IDbContext.SaveChanges()
-        {
-            this.SaveChanges();
-        }
-
-        public IDbContextTransaction BeginTransaction()
-        {
-            return this.Database.BeginTransaction();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -44,7 +35,7 @@
                 );
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlServer(ConnectionString);
+        //protected override void OnConfiguring(DbContextOptionsBuilder options)
+        //    => options.UseSqlServer(ConnectionString);
     }
 }

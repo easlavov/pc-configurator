@@ -12,12 +12,12 @@
     {
         private readonly DbSet<ComponentType> dbSet;
 
-        public MssqlComponentTypesRepository(IDbContext context)
+        public MssqlComponentTypesRepository(DbContext context)
         {
             if (context == null)
                 throw new ArgumentNullException(nameof(context));
 
-            dbSet = context.GetSet<ComponentType>();
+            dbSet = context.Set<ComponentType>();
         }
 
         public IQueryable<ComponentType> GetAll()
