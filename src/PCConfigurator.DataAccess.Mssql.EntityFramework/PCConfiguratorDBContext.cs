@@ -1,16 +1,30 @@
 ﻿namespace PCConfigurator.DataAccess.Mssql.EntityFramework
 {
-    using System;
-
     using PCConfigurator.Core;
 
     using Microsoft.EntityFrameworkCore;
+    using Microsoft.EntityFrameworkCore.Storage;
 
-    public class PCConfiguratorDBContext : DbContext
+    public class PCConfiguratorDBContext : DbContext, IDbContext
     {
         private const string ConnectionString = @"Server=.\SQLEXPRESS;Database=PCConfigurator;Trusted_Connection=True;";
 
         public DbSet<ComponentType> ComponentTypes { get; set; }
+        
+        public DbSet<T> GetSet<T>() where T : class
+        {
+            return this.GetSet<T>();
+        }
+
+        void IDbContext.SaveChanges()
+        {
+            this.SaveChanges();
+        }
+
+        public IDbContextTransaction BeginTransaction()
+        {
+            return this.Database.BeginTransaction();
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -32,6 +46,5 @@
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlServer(ConnectionString);
-
     }
 }
