@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCConfigurator.Core", "PCCo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCConfigurator.Core.Tests", "PCConfigurator.Core.Tests\PCConfigurator.Core.Tests.csproj", "{ACFE1A2B-FF4B-4461-A994-9138E378B904}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCConfigurator.DataAccess.Mssql.EntityFramework", "PCConfigurator.DataAccess.Mssql.EntityFramework\PCConfigurator.DataAccess.Mssql.EntityFramework.csproj", "{3F149C26-109B-4FD8-BCF2-FF9BD78544F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{ACFE1A2B-FF4B-4461-A994-9138E378B904}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACFE1A2B-FF4B-4461-A994-9138E378B904}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACFE1A2B-FF4B-4461-A994-9138E378B904}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F149C26-109B-4FD8-BCF2-FF9BD78544F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F149C26-109B-4FD8-BCF2-FF9BD78544F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F149C26-109B-4FD8-BCF2-FF9BD78544F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F149C26-109B-4FD8-BCF2-FF9BD78544F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
