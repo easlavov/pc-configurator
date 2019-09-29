@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCConfigurator.Application"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCConfigurator.Application.Tests", "PCConfigurator.Application.Tests\PCConfigurator.Application.Tests.csproj", "{A36B0BE5-E43A-41F9-8286-DA54CB707683}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCConfigurator.Web", "PCConfigurator.Web\PCConfigurator.Web.csproj", "{7A3176AD-866F-44C2-A826-9AA64F570991}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{A36B0BE5-E43A-41F9-8286-DA54CB707683}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A36B0BE5-E43A-41F9-8286-DA54CB707683}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A36B0BE5-E43A-41F9-8286-DA54CB707683}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A3176AD-866F-44C2-A826-9AA64F570991}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A3176AD-866F-44C2-A826-9AA64F570991}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A3176AD-866F-44C2-A826-9AA64F570991}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A3176AD-866F-44C2-A826-9AA64F570991}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
