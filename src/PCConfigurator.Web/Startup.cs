@@ -1,3 +1,4 @@
+using PCConfigurator.Web.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -38,6 +39,7 @@ namespace PCConfigurator.Web
             services.AddScoped<ComponentTypesManager>();
             services.AddScoped<ComponentTypesRepository, MssqlComponentTypesRepository>();
             services.AddScoped<DbContext, PCConfiguratorDBContext>();
+            services.UseOneTransactionPerHttpCall(System.Data.IsolationLevel.ReadCommitted);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,7 +53,7 @@ namespace PCConfigurator.Web
             {
                 app.UseExceptionHandler("/Home/Error");
             }
-            app.UseStaticFiles();
+            app.UseStaticFiles();            
 
             app.UseRouting();
 

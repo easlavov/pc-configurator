@@ -7,5 +7,7 @@
     public interface ComponentTypesRepository
     {
         IQueryable<ComponentType> GetAll();
+
+        void Delete(long id);
     }
 }

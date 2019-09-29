@@ -3,17 +3,81 @@
     ViewData["Title"] = "Index";
 }
 
-@model ComponentTypesIndexViewModel
+@*@model ComponentTypesIndexViewModel*@
+
+@section Styles {
+    <link rel="stylesheet" type="text/css" href="~/DataTables/datatables.css">
+}
+
 <h1>Index</h1>
 
 
 <div>
     <h2>Component types list</h2>
-    <ul>
-        @foreach (var item in this.Model.ComponentTypes)
-        {
-            <li>@item.Name</li>
-        }
-    </ul>
+    <table id="component-types-table">
+        @*<thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+            </tr>
+        </thead>*@
+
+        @*<tbody>*@
+            @*@foreach (var item in this.Model.ComponentTypes)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Name</td>
+                </tr>
+
+            }*@
+        @*</tbody>*@
+    </table>
 
 </div>
+
+@section Scripts {
+
+    <script type="text/javascript" charset="utf8" src="~/DataTables/datatables.js"></script>
+
+    <script>
+        $(document).ready( function () {
+            var table = $('#component-types-table').DataTable({
+                serverSide: true,
+                ajax: 'ComponentTypes/LoadComponentTypes',
+                columns: [
+                    { data: "id", title: "Id" },
+                    { data: "name", title: "Name" },
+                    {
+                        data: null,
+                        title: "Actions",
+                        render: function (data, type, row) {
+                            var editButton = `<button class=edit-component-type data-id=${data.id}>Edit</button>`;
+                            var deleteButton = `<button class=delete-component-type data-id=${data.id}>Delete</button>`;
+                            return editButton + deleteButton;
+                        }
+                    },
+
+                ],
+                drawCallback: function () {
+                    $(".delete-component-type").click(function (event, a, v, c) {
+                        var id = $(this).data('id');
+                        //event.preventDefault();
+                        //event.stopPropagation();
+                        //event.stopImmediatePropagation();
+                        console.log(id);
+
+                        $.post("ComponentTypes/DeleteComponentType", { id: id }, function () {
+                            table.ajax.reload();
+                        });
+
+                        
+                    });
+                }
+            });
+
+            
+        });
+    </script>
+    
+}
