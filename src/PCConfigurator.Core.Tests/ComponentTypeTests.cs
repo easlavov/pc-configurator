@@ -1,21 +1,17 @@
-using NUnit.Framework;
-using System;
-
 namespace PCConfigurator.Core.Tests
 {
+    using System;
+
+    using NUnit.Framework;
+
     public class ComponentTypeTests
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
         public void Constructor_ThrowsOnNullName()
         {
             Assert.Throws<ArgumentNullException>(() =>
             {
-                new ComponentType(null);
+                new ComponentType(1, null);
             });
         }
 
@@ -25,7 +21,7 @@ namespace PCConfigurator.Core.Tests
 
             Assert.Throws<ArgumentNullException>(() =>
             {
-                new ComponentType(string.Empty);
+                new ComponentType(1, string.Empty);
             });
         }
 
@@ -34,7 +30,7 @@ namespace PCConfigurator.Core.Tests
         {
             var expectedName = "CPU";
 
-            var componentType = new ComponentType(expectedName);
+            var componentType = new ComponentType(1, expectedName);
 
             Assert.AreEqual(expectedName, componentType.Name);
         }

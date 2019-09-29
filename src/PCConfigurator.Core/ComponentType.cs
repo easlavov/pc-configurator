@@ -2,9 +2,10 @@
 {
     using System;
 
-    public class ComponentType
+    public class ComponentType : Entity
     {
-        public ComponentType(string name)
+        public ComponentType(long id, string name)
+            : base(id)
         {
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentNullException(nameof(name));
