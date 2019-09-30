@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+
     using NUnit.Framework;
 
     [TestFixture]
@@ -61,6 +62,43 @@
             var configuration = new Configuration(1, "My Configuration", components);
 
             Assert.AreEqual(350, configuration.TotalPrice);
+        }
+
+        [Test]
+        public void Components_Setter_ThrowsOnComponentsWithSameComponentType()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var configuration = new Configuration(1, "My Configuration", new List<Component>());
+
+                var components = new[]
+                {
+                    new Component(1, new ComponentType(1, "CPU"), "FX-8150", 150),
+                    new Component(2, new ComponentType(2, "GPU"), "GTX 960", 200),
+                    new Component(2, new ComponentType(2, "GPU"), "GTX 1080", 500),
+                };
+
+                configuration.Components = components;
+            });
+        }
+
+        [Test]
+        public void Components_Getter_ReturnsCorrectly()
+        {
+            var configuration = new Configuration(1, "My Configuration", new List<Component>());
+
+            var components = new[]
+            {
+                new Component(1, new ComponentType(1, "CPU"), "FX-8150", 150),
+                new Component(2, new ComponentType(2, "GPU"), "GTX 960", 200),
+            };
+
+            configuration.Components = components;
+
+            var gotComponets = configuration.Components;
+
+            Assert.AreEqual(components[0], gotComponets[0]);
+            Assert.AreEqual(components[1], gotComponets[1]);
         }
     }
 }

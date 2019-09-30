@@ -1,6 +1,7 @@
 ﻿namespace PCConfigurator.Core
 {
     using System;
+    using System.Collections.Generic;
 
     public class Component : Entity
     {
@@ -35,5 +36,19 @@
         public string Name { get; }
 
         public decimal Price { get; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            if (!(obj is Component)) return false;
+            return (obj as Component).GetHashCode() == obj.GetHashCode();
+        }
+
+        public override int GetHashCode()
+        {
+            return (int)Id * Name.Length;
+        }
+
+        private IList<ConfigurationComponent> ConfigurationComponents { get; set; } = new List<ConfigurationComponent>();
     }
 }

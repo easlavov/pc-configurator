@@ -22,6 +22,7 @@
         {
             AddComponentType(modelBuilder);
             AddComponent(modelBuilder);
+            AddConfiguration(modelBuilder);
         }
 
         private static void AddComponentType(ModelBuilder modelBuilder)
@@ -99,7 +100,20 @@
                 );
         }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder options)
-        //    => options.UseSqlServer(ConnectionString);
+        private void AddConfiguration(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Configuration>().ToTable("configurations");
+
+            modelBuilder.Entity<Configuration>().Property(t => t.Id).HasColumnName("id").UseIdentityColumn();
+            modelBuilder.Entity<Configuration>().HasKey(t => t.Id);
+            modelBuilder.Entity<Configuration>().Property(t => t.Name).HasColumnName("name").IsRequired();
+            modelBuilder.Entity<Configuration>().Ignore(t => t.Components);
+
+            modelBuilder.Entity<ConfigurationComponent>().ToTable("configurations_components");
+            modelBuilder.Entity<ConfigurationComponent>().Property(t => t.ComponentId).HasColumnName("component_id");
+            modelBuilder.Entity<ConfigurationComponent>().Property(t => t.ConfigurationId).HasColumnName("configuration_id");
+            modelBuilder.Entity<ConfigurationComponent>().HasKey(
+                    cc => new { component_id = cc.ComponentId, configuration_id = cc.ConfigurationId });
+        }
     }
 }
