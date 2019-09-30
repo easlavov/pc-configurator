@@ -21,7 +21,7 @@
             Price = price;
         }
 
-        public Component(long id, string name, decimal price)
+        private Component(long id, string name, decimal price)
             : base (id)
         {
             Name = name;
