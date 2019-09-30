@@ -14,5 +14,17 @@
         }
 
         public string Name { get; }
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            if (!(obj is ComponentType)) return false;
+            return (obj as ComponentType).GetHashCode() == obj.GetHashCode();
+        }
+
+        public override int GetHashCode()
+        {
+            return (int)Id * Name.Length;
+        }
     }
 }

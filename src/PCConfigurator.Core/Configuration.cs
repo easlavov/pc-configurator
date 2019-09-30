@@ -11,9 +11,17 @@
         {
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentNullException(nameof(name));
-            
+
+            if (components == null)
+                throw new ArgumentNullException(nameof(components));
+
+            var groups = components.GroupBy(cmpnt => cmpnt.ComponentType);
+
+            if (groups.Count() != components.Count)
+                throw new ArgumentException($"All items in the {nameof(components)} collection must me of unique {nameof(ComponentType)}!");
+
             Name = name;
-            Components = components ?? throw new ArgumentNullException(nameof(components));
+            Components = components;
         }
 
         private Configuration(long id, string name)
@@ -25,5 +33,7 @@
         public ICollection<Component> Components { get; }
 
         public decimal TotalPrice => Components.Sum(cmpnt => cmpnt.Price);
+
+        
     }
 }

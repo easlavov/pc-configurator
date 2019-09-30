@@ -35,6 +35,21 @@
         }
 
         [Test]
+        public void Constructor_ThrowsOnComponentsWithSameComponentType()
+        {
+            Assert.Throws<ArgumentException>(() =>
+            {
+                var components = new[]
+                {
+                    new Component(1, new ComponentType(1, "CPU"), "FX-8150", 150),
+                    new Component(2, new ComponentType(2, "GPU"), "GTX 960", 200),
+                    new Component(2, new ComponentType(2, "GPU"), "GTX 1080", 500),
+                };
+                new Configuration(1, "My Configuration", components);
+            });
+        }
+
+        [Test]
         public void TotalPrice_ReturnsSumOfComponentPrices()
         {
             var components = new[]
