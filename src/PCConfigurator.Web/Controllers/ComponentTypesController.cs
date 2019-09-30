@@ -20,11 +20,9 @@ namespace PCConfigurator.Web.Controllers
 
         public IActionResult Index()
         {
-            //return View(new ComponentTypesIndexViewModel { ComponentTypes = componentTypes });
             return View();
         }
 
-        //[HttpPost]
         public IActionResult LoadComponentTypes(DataTablesRequest dtRequest)
         {
             var result = componentTypesManager.Load(
