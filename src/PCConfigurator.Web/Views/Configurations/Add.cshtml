@@ -5,6 +5,23 @@
 
 <h1>Add</h1>
 
+<form id="configuration-form" method="post">
+    <div class="form-group">
+        <label for="name"></label>
+        <input id="name" type="text" class="form-control" />
+    </div>
+
+    <div id="components-box">
+
+    </div>
+
+    <button id="add-component-btn" type="button">Add component</button>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
 @section Scripts {
+    <script type="text/javascript" charset="utf8" src="~/lib/underscore/underscore-min.js"></script>
     <script type="text/javascript" charset="utf8" src="~/js/configurations-add.js"></script>
 }

@@ -20,4 +20,8 @@
     <ProjectReference Include="..\PCConfigurator.DataAccess.Mssql.EntityFramework\PCConfigurator.DataAccess.Mssql.EntityFramework.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\lib\underscore\" />
+  </ItemGroup>
+
 </Project>

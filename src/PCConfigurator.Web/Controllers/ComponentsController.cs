@@ -85,7 +85,7 @@ namespace PCConfigurator.Web.Controllers
         [HttpGet]
         public IActionResult LoadAllComponents()
         {
-            var components = componentsManager.LoadAll();
+            var components = componentsManager.GetByComponentType();
             return base.JsonContent(components);
         }
 

@@ -20,7 +20,7 @@
 
         public override IQueryable<Component> GetAllById(params long[] ids)
         {
-            return base.GetAllById().Include(cmp => cmp.ComponentType);            
+            return base.GetAllById(ids).Include(cmp => cmp.ComponentType);            
         }
     }
 }

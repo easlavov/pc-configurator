@@ -19,7 +19,7 @@ namespace PCConfigurator.Application
 
         public Configuration Add(ConfigurationWriteModel model)
         {
-            var components = compRepo.GetAllById(model.Components.Select(cmp => cmp.Id).ToArray());
+            var components = compRepo.GetAllById(model.Components.Select(id => id).ToArray());
             var configuration = new Configuration(0, model.Name, components.ToList());
             return repository.Add(configuration);
         }

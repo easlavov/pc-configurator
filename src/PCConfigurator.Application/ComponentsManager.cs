@@ -22,6 +22,7 @@ namespace PCConfigurator.Application
             var viewModel = repository.GetAll().Select(x => new ComponentViewModel 
             { 
                 Id = x.Id, 
+                Name = x.Name,
                 ComponentType = new ComponentTypeViewModel 
                 { 
                     Id = x.ComponentTypeId, 
@@ -31,6 +32,13 @@ namespace PCConfigurator.Application
             });
 
             return viewModel;
+        }
+
+        public IDictionary<ComponentTypeViewModel, IEnumerable<ComponentViewModel>> GetByComponentType()
+        {
+            var comps = LoadAll();
+            var byType = comps.GroupBy(x => x.ComponentType).ToDictionary(x => x.Key, x => x.AsEnumerable());
+            return byType;
         }
 
         public Component Add(ComponentWriteModel entity)

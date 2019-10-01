@@ -54,8 +54,7 @@
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Add([FromForm]AddConfigurationViewModel model)
+        public IActionResult Add(AddConfigurationWriteModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -64,6 +63,7 @@
                 return this.View(model);
             }
 
+            configurationsManager.Add(new ConfigurationWriteModel { Name = model.Name, Components = model.ComponentIds });
             //componentsManager.Add(new ComponentWriteModel { Name = model.Name, ComponentTypeId = model.SelectedComponentTypeId, Price = model.Price });
 
             return this.RedirectToAction(nameof(Index));

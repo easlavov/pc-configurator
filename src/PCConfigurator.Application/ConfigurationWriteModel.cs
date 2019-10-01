@@ -10,6 +10,6 @@ namespace PCConfigurator.Application
     {
         public string Name { get; set; }
 
-        public IEnumerable<ComponentWriteModel> Components { get; set; }
+        public long[] Components { get; set; }
     }
 }
