@@ -12,7 +12,7 @@ namespace PCConfigurator.Web.Models
     {
         public IEnumerable<SelectListItem> ComponentTypes { get; set; }
 
-        [Required]
+        [Required(AllowEmptyStrings = false)]
         [Display(Name = "Component Type")]
         public long SelectedComponentTypeId { get; set; }
 
