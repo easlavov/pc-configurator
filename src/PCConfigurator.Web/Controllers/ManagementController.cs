@@ -10,13 +10,20 @@ namespace PCConfigurator.Web.Controllers
     public class ManagementController : Controller
     {
         private readonly EntityManager<ComponentType> componentTypesManager;
+        private readonly EntityManager<Component> componentsManager;
 
-        public ManagementController(EntityManager<ComponentType> componentTypesManager)
+        public ManagementController(
+            EntityManager<ComponentType> componentTypesManager,
+            EntityManager<Component> componentsManager)
         {
             if (componentTypesManager == null)
                 throw new ArgumentNullException(nameof(componentTypesManager));
 
+            if (componentsManager == null)
+                throw new ArgumentNullException(nameof(componentsManager));
+
             this.componentTypesManager = componentTypesManager;
+            this.componentsManager = componentsManager;
         }
 
         public IActionResult Index()
@@ -43,6 +50,28 @@ namespace PCConfigurator.Web.Controllers
         public IActionResult DeleteComponentType(long id)
         {
             componentTypesManager.Delete(id);
+            return Ok();
+        }
+
+        public IActionResult LoadComponents(DataTablesRequest dtRequest)
+        {
+            var result = componentsManager.Load(
+                new PageRequest { Skip = dtRequest.Start, Take = dtRequest.Length });
+            var response = new DataTablesResponse
+            {
+                data = result.Items.ToArray(),
+                draw = dtRequest.Draw,
+                recordsFiltered = result.TotalItems,
+                recordsTotal = result.TotalItems
+            };
+
+            return Json(response);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteComponent(long id)
+        {
+            componentsManager.Delete(id);
             return Ok();
         }
     }

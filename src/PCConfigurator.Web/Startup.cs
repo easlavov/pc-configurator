@@ -39,6 +39,10 @@ namespace PCConfigurator.Web
         {
             services.AddScoped<EntityManager<ComponentType>>();
             services.AddScoped<Repository<ComponentType>, GenericMssqlRepository<ComponentType>>();
+
+            services.AddScoped<EntityManager<Component>>();
+            services.AddScoped<Repository<Component>, GenericMssqlRepository<Component>>();
+
             services.AddScoped<DbContext, PCConfiguratorDBContext>();
             services.UseOneTransactionPerHttpCall(System.Data.IsolationLevel.ReadCommitted);
         }
