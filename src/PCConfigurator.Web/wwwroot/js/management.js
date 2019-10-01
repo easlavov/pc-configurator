@@ -8,6 +8,14 @@
     grid.load({
         tableId: "#components-table",
         dataUrl: 'Management/LoadComponents',
-        deleteUrl: 'Management/DeleteComponent'
+        deleteUrl: 'Management/DeleteComponent',
+        columns: [
+            {
+                data: function (row, type, set) {                    
+                    return row.componentType.name;                    
+                },
+                title: "Type"
+            }
+        ]
     });
 });
