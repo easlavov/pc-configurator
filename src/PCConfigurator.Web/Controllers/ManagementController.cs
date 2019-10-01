@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using PCConfigurator.Application;
@@ -12,11 +13,11 @@ namespace PCConfigurator.Web.Controllers
     public class ManagementController : Controller
     {
         private readonly EntityManager<ComponentType> componentTypesManager;
-        private readonly EntityManager<Component> componentsManager;
+        private readonly ComponentManager componentsManager;
 
         public ManagementController(
             EntityManager<ComponentType> componentTypesManager,
-            EntityManager<Component> componentsManager)
+            ComponentManager componentsManager)
         {
             if (componentTypesManager == null)
                 throw new ArgumentNullException(nameof(componentTypesManager));
@@ -46,6 +47,31 @@ namespace PCConfigurator.Web.Controllers
             };
 
             return Json(response);
+        }
+
+        [HttpGet]
+        public IActionResult AddComponent()
+        {
+            var viewModel = new AddComponentViewModel 
+            { 
+                ComponentTypes = componentTypesManager.LoadAll().Select(ct => new SelectListItem { Text = ct.Name, Value = ct.Id.ToString() }) 
+            };
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult AddComponent([FromForm]AddComponentViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                model.ComponentTypes = componentTypesManager.LoadAll()
+                .Select(ct => new SelectListItem { Text = ct.Name, Value = ct.Id.ToString(), Selected = ct.Id == model.SelectedComponentTypeId });
+                return this.View(model);
+            }
+
+            componentsManager.Add(new ComponentWriteModel { Name = model.Name, ComponentTypeId = model.SelectedComponentTypeId, Price = model.Price });
+
+            return this.RedirectToAction(nameof(Index));
         }
 
         [HttpPost]

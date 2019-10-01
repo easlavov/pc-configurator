@@ -41,7 +41,7 @@ namespace PCConfigurator.Web
             services.AddScoped<EntityManager<ComponentType>>();
             services.AddScoped<Repository<ComponentType>, GenericMssqlRepository<ComponentType>>();
 
-            services.AddScoped<EntityManager<Component>>();
+            services.AddScoped<ComponentManager>();
             services.AddScoped<Repository<Component>, ComponentRepository>();
 
             services.AddScoped<DbContext, PCConfiguratorDBContext>();

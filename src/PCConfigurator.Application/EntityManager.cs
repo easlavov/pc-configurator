@@ -6,11 +6,11 @@
     using PCConfigurator.Application.Repositories;
     using PCConfigurator.Core;
 
-    public class EntityManager<T> where T: Entity
+    public class EntityManager<TEntity> where TEntity: Entity
     {
-        private readonly Repository<T> repository;
+        protected readonly Repository<TEntity> repository;
 
-        public EntityManager(Repository<T> repository)
+        public EntityManager(Repository<TEntity> repository)
         {
             if (repository == null)
                 throw new ArgumentNullException(nameof(repository));
@@ -18,17 +18,17 @@
             this.repository = repository;
         }
 
-        public IEnumerable<T> LoadAll()
+        public IEnumerable<TEntity> LoadAll()
         {
             return repository.GetAll();
         }
         
-        public Page<T> Load(PageRequest request)
+        public Page<TEntity> Load(PageRequest request)
         {
             var allItems = repository.GetAll();
             var itemsCount = allItems.Count();
             var items = repository.GetAll().Skip(request.Skip).Take(request.Take);
-            var page = new Page<T> { Items = items, TotalItems = itemsCount };
+            var page = new Page<TEntity> { Items = items, TotalItems = itemsCount };
             return page;
         }
 
