@@ -1,6 +1,7 @@
 ﻿namespace PCConfigurator.Core
 {
     using System;
+    using System.Collections.Generic;
 
     public class ComponentType : Entity
     {
@@ -14,6 +15,8 @@
         }
 
         public string Name { get; }
+
+        //public IList<Component> Components { get; set; }
 
         public override bool Equals(object obj)
         {

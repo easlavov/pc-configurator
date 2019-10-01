@@ -30,7 +30,9 @@ namespace PCConfigurator.Web
             services.AddControllersWithViews();
             
             services.AddDbContext<PCConfiguratorDBContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString(ConnectionStringName)));
+                options
+                    .UseLazyLoadingProxies()
+                    .UseSqlServer(Configuration.GetConnectionString(ConnectionStringName)));
 
             ConfigureApplicationServices(services);
         }

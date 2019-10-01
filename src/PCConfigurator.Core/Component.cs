@@ -22,7 +22,7 @@
             Price = price;
         }
 
-        private Component(long id, string name, decimal price)
+        protected Component(long id, string name, decimal price)
             : base (id)
         {
             Name = name;
@@ -31,7 +31,7 @@
 
         public long ComponentTypeId { get; set; }
 
-        public ComponentType ComponentType { get; set; }
+        public virtual ComponentType ComponentType { get; set; }
 
         public string Name { get; }
 
