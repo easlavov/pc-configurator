@@ -12,8 +12,8 @@
                     data: null,
                     title: "Actions",
                     render: function (data, type, row) {
-                        var editButton = `<button class=edit-entity data-id=${data.id}>Edit</button>`;
-                        var deleteButton = `<button class=delete-entity data-id=${data.id}>Delete</button>`;
+                        var editButton = `<button class="btn btn-primary edit-entity" data-id=${data.id}>Edit</button>`;
+                        var deleteButton = `<button class="btn btn-danger elete-entity" data-id=${data.id}>Delete</button>`;
                         return editButton + deleteButton;
                     }
                 },
