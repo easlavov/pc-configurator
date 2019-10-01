@@ -31,7 +31,6 @@ namespace PCConfigurator.Web
             
             services.AddDbContext<PCConfiguratorDBContext>(options =>
                 options
-                    .UseLazyLoadingProxies()
                     .UseSqlServer(Configuration.GetConnectionString(ConnectionStringName)));
 
             ConfigureApplicationServices(services);
@@ -43,7 +42,7 @@ namespace PCConfigurator.Web
             services.AddScoped<Repository<ComponentType>, GenericMssqlRepository<ComponentType>>();
 
             services.AddScoped<EntityManager<Component>>();
-            services.AddScoped<Repository<Component>, GenericMssqlRepository<Component>>();
+            services.AddScoped<Repository<Component>, ComponentRepository>();
 
             services.AddScoped<DbContext, PCConfiguratorDBContext>();
             services.UseOneTransactionPerHttpCall(System.Data.IsolationLevel.ReadCommitted);

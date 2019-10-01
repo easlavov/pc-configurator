@@ -34,7 +34,7 @@
                 .Property(t => t.Name).HasColumnName("name").IsRequired();
             modelBuilder.Entity<ComponentType>()
                 .HasKey(t => t.Id);
-
+           
             modelBuilder.Entity<ComponentType>().HasData(
                     new ComponentType(1, "Motherboard"),
                     new ComponentType(2, "CPU"),
@@ -55,9 +55,11 @@
 
             modelBuilder.Entity<Component>().Property(x => x.ComponentTypeId).HasColumnName("component_type_id");
             modelBuilder.Entity<Component>()
-                .HasOne(t => t.ComponentType).WithOne()
-                .HasForeignKey<Component>(c => c.ComponentTypeId)
-                .OnDelete(DeleteBehavior.Restrict);
+               .HasOne(c => c.ComponentType)
+               .WithMany(c => c.Components)
+               .OnDelete(DeleteBehavior.Cascade);
+
+
             modelBuilder.Entity<Component>()
                 .Property(t => t.Price).HasColumnName("price").IsRequired();
             

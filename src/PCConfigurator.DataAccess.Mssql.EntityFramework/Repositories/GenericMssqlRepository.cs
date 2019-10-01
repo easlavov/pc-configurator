@@ -10,8 +10,8 @@
 
     public class GenericMssqlRepository<T> : Repository<T> where T: Entity
     {
-        private readonly DbSet<T> dbSet;
-        private readonly DbContext context;
+        protected readonly DbSet<T> dbSet;
+        protected readonly DbContext context;
 
         public GenericMssqlRepository(DbContext context)
         {
@@ -22,7 +22,7 @@
             dbSet = context.Set<T>();
         }
 
-        public IQueryable<T> GetAll()
+        public virtual IQueryable<T> GetAll()
         {
             return dbSet;
         }

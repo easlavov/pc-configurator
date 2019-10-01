@@ -16,7 +16,7 @@
 
         public string Name { get; }
 
-        //public IList<Component> Components { get; set; }
+        public virtual IList<Component> Components { get; set; }
 
         public override bool Equals(object obj)
         {

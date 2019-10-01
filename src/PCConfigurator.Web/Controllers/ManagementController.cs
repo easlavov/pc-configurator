@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using PCConfigurator.Application;
 using PCConfigurator.Core;
 using PCConfigurator.Web.Models;
@@ -65,7 +67,8 @@ namespace PCConfigurator.Web.Controllers
                 recordsTotal = result.TotalItems
             };
 
-            return Json(response);
+            var ser = JsonConvert.SerializeObject(response, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore, ContractResolver = new CamelCasePropertyNamesContractResolver() });
+            return this.Content(ser, "application/json");
         }
 
         [HttpPost]
