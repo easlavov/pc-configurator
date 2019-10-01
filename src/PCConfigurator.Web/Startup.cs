@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using PCConfigurator.Application;
 using PCConfigurator.Application.Repositories;
 using PCConfigurator.DataAccess.Mssql.EntityFramework.Repositories;
+using PCConfigurator.Core;
 
 namespace PCConfigurator.Web
 {
@@ -36,8 +37,8 @@ namespace PCConfigurator.Web
 
         private void ConfigureApplicationServices(IServiceCollection services)
         {
-            services.AddScoped<ComponentTypesManager>();
-            services.AddScoped<ComponentTypesRepository, MssqlComponentTypesRepository>();
+            services.AddScoped<EntityManager<ComponentType>>();
+            services.AddScoped<Repository<ComponentType>, GenericMssqlRepository<ComponentType>>();
             services.AddScoped<DbContext, PCConfiguratorDBContext>();
             services.UseOneTransactionPerHttpCall(System.Data.IsolationLevel.ReadCommitted);
         }

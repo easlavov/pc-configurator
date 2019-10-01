@@ -2,15 +2,16 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using PCConfigurator.Application;
+using PCConfigurator.Core;
 using PCConfigurator.Web.Models;
 
 namespace PCConfigurator.Web.Controllers
 {
     public class ComponentTypesController : Controller
     {
-        private readonly ComponentTypesManager componentTypesManager;
+        private readonly EntityManager<ComponentType> componentTypesManager;
 
-        public ComponentTypesController(ComponentTypesManager componentTypesManager)
+        public ComponentTypesController(EntityManager<ComponentType> componentTypesManager)
         {
             if (componentTypesManager == null)
                 throw new ArgumentNullException(nameof(componentTypesManager));

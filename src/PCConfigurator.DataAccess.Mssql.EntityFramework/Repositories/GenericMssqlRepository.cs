@@ -8,21 +8,21 @@
 
     using Microsoft.EntityFrameworkCore;
 
-    public class MssqlComponentTypesRepository : ComponentTypesRepository
+    public class GenericMssqlRepository<T> : Repository<T> where T: Entity
     {
-        private readonly DbSet<ComponentType> dbSet;
+        private readonly DbSet<T> dbSet;
         private readonly DbContext context;
 
-        public MssqlComponentTypesRepository(DbContext context)
+        public GenericMssqlRepository(DbContext context)
         {
             if (context == null)
                 throw new ArgumentNullException(nameof(context));
 
             this.context = context;
-            dbSet = context.Set<ComponentType>();
+            dbSet = context.Set<T>();
         }
 
-        public IQueryable<ComponentType> GetAll()
+        public IQueryable<T> GetAll()
         {
             return dbSet;
         }

@@ -6,29 +6,29 @@
     using PCConfigurator.Application.Repositories;
     using PCConfigurator.Core;
 
-    public class ComponentTypesManager
+    public class EntityManager<T> where T: Entity
     {
-        private readonly ComponentTypesRepository repository;
+        private readonly Repository<T> repository;
 
-        public ComponentTypesManager(ComponentTypesRepository componentTypesRepository)
+        public EntityManager(Repository<T> repository)
         {
-            if (componentTypesRepository == null)
-                throw new ArgumentNullException(nameof(componentTypesRepository));
+            if (repository == null)
+                throw new ArgumentNullException(nameof(repository));
 
-            repository = componentTypesRepository;
+            this.repository = repository;
         }
 
-        public IEnumerable<ComponentType> LoadAll()
+        public IEnumerable<T> LoadAll()
         {
             return repository.GetAll();
         }
         
-        public Page<ComponentType> Load(PageRequest request)
+        public Page<T> Load(PageRequest request)
         {
             var allItems = repository.GetAll();
             var itemsCount = allItems.Count();
             var items = repository.GetAll().Skip(request.Skip).Take(request.Take);
-            var page = new Page<ComponentType> { Items = items, TotalItems = itemsCount };
+            var page = new Page<T> { Items = items, TotalItems = itemsCount };
             return page;
         }
 

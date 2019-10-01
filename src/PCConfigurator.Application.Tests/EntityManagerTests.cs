@@ -9,14 +9,14 @@ namespace PCConfigurator.Application.Tests
     using FakeItEasy;
     using NUnit.Framework;
 
-    public class ComponentTypesManagerTests
+    public class EntityManagerTests
     {
-        private ComponentTypesRepository repository;
+        private Repository<ComponentType> repository;
 
         [SetUp]
         public void Setup()
         {
-            repository = A.Fake<ComponentTypesRepository>();
+            repository = A.Fake<Repository<ComponentType>>();
 
             var componentTypes = new[]
             {
@@ -32,14 +32,14 @@ namespace PCConfigurator.Application.Tests
         {
             Assert.Throws<ArgumentNullException>(() =>
             {
-                new ComponentTypesManager(null);
+                new EntityManager<ComponentType>(null);
             });
         }
 
         [Test]
         public void LoadAll_ReturnsCorrectCountOf()
         {
-            var manager = new ComponentTypesManager(repository);
+            var manager = new EntityManager<ComponentType>(repository);
 
             var componentTypes = manager.LoadAll();
 

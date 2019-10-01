@@ -4,9 +4,9 @@
 
     using PCConfigurator.Core;
 
-    public interface ComponentTypesRepository
+    public interface Repository<T> where T: Entity
     {
-        IQueryable<ComponentType> GetAll();
+        IQueryable<T> GetAll();
 
         void Delete(long id);
     }
