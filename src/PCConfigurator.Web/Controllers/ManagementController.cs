@@ -7,11 +7,11 @@ using PCConfigurator.Web.Models;
 
 namespace PCConfigurator.Web.Controllers
 {
-    public class ComponentTypesController : Controller
+    public class ManagementController : Controller
     {
         private readonly EntityManager<ComponentType> componentTypesManager;
 
-        public ComponentTypesController(EntityManager<ComponentType> componentTypesManager)
+        public ManagementController(EntityManager<ComponentType> componentTypesManager)
         {
             if (componentTypesManager == null)
                 throw new ArgumentNullException(nameof(componentTypesManager));
