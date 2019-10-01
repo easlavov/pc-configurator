@@ -1,5 +1,7 @@
 ﻿$(document).ready(function () {
+    var components = [];
+
     $.getJSON("/Components/LoadAllComponents").done(function (response) {
-        console.log(response)
+        components = response;
     });
 });

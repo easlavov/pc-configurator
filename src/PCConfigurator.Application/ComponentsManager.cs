@@ -20,8 +20,15 @@ namespace PCConfigurator.Application
         public new IEnumerable<ComponentViewModel> LoadAll()
         {
             var viewModel = repository.GetAll().Select(x => new ComponentViewModel 
-                { Id = x.Id, ComponentType = new ComponentTypeViewModel 
-                    { Id = x.ComponentTypeId, Name = x.ComponentType.Name } });
+            { 
+                Id = x.Id, 
+                ComponentType = new ComponentTypeViewModel 
+                { 
+                    Id = x.ComponentTypeId, 
+                    Name = x.ComponentType.Name 
+                },
+                Price = x.Price
+            });
 
             return viewModel;
         }
