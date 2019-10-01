@@ -60,6 +60,7 @@ namespace PCConfigurator.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult AddComponent([FromForm]AddComponentViewModel model)
         {
             if (!this.ModelState.IsValid)
