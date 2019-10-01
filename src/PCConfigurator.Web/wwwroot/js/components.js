@@ -1,14 +1,14 @@
 ﻿$(document).ready(function () {
     grid.load({
         tableId: "#component-types-table",
-        dataUrl: 'Management/LoadComponentTypes',
-        deleteUrl: 'Management/DeleteComponentType'
+        dataUrl: 'Components/LoadComponentTypes',
+        deleteUrl: 'Components/DeleteComponentType'
     });
 
     grid.load({
         tableId: "#components-table",
-        dataUrl: 'Management/LoadComponents',
-        deleteUrl: 'Management/DeleteComponent',
+        dataUrl: 'Components/LoadComponents',
+        deleteUrl: 'Components/DeleteComponent',
         columns: [
             {
                 data: function (row, type, set) {                    

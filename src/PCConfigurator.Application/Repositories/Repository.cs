@@ -10,6 +10,8 @@
 
         IQueryable<T> GetAll();
 
+        IQueryable<T> GetAllById(params long[] ids);
+
         T Add(T entity);
 
         void Delete(long id);

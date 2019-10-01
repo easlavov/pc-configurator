@@ -2,18 +2,28 @@
 using PCConfigurator.Core;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace PCConfigurator.Application
 {
-    public class ComponentManager : EntityManager<Component>
+    public class ComponentsManager : EntityManager<Component>
     {
         private readonly Repository<ComponentType> compTypeRepo;
 
-        public ComponentManager(Repository<Component> repository, Repository<ComponentType> compTypeRepo) : 
+        public ComponentsManager(Repository<Component> repository, Repository<ComponentType> compTypeRepo) : 
             base(repository)
         {
             this.compTypeRepo = compTypeRepo ?? throw new ArgumentNullException(nameof(compTypeRepo));
+        }
+
+        public new IEnumerable<ComponentViewModel> LoadAll()
+        {
+            var viewModel = repository.GetAll().Select(x => new ComponentViewModel 
+                { Id = x.Id, ComponentType = new ComponentTypeViewModel 
+                    { Id = x.ComponentTypeId, Name = x.ComponentType.Name } });
+
+            return viewModel;
         }
 
         public Component Add(ComponentWriteModel entity)

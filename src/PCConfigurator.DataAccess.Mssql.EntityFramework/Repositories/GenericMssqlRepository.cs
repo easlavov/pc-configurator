@@ -32,6 +32,11 @@
             return dbSet;
         }
 
+        public virtual IQueryable<T> GetAllById(params long[] ids)
+        {
+            return dbSet.Where(entity => ids.Contains(entity.Id));
+        }
+
         public T Add(T entity)
         {
             var entry = dbSet.Add(entity);

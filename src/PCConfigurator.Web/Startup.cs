@@ -41,8 +41,11 @@ namespace PCConfigurator.Web
             services.AddScoped<EntityManager<ComponentType>>();
             services.AddScoped<Repository<ComponentType>, GenericMssqlRepository<ComponentType>>();
 
-            services.AddScoped<ComponentManager>();
+            services.AddScoped<ComponentsManager>();
             services.AddScoped<Repository<Component>, ComponentRepository>();
+
+            services.AddScoped<ConfigurationsManager>();
+            services.AddScoped<Repository<Configuration>, GenericMssqlRepository<Configuration>>();
 
             services.AddScoped<DbContext, PCConfiguratorDBContext>();
             services.UseOneTransactionPerHttpCall(System.Data.IsolationLevel.ReadCommitted);
@@ -69,7 +72,7 @@ namespace PCConfigurator.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Configurations}/{action=Index}/{id?}");
             });
         }
     }

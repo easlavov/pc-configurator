@@ -17,12 +17,12 @@
 
 <div>
     <h2>Components list</h2>
-    @Html.ActionLink("Add Component", "AddComponent", "Management", null, new { @class = "btn btn-success" })
+    @Html.ActionLink("Add Component", "AddComponent", "Components", null, new { @class = "btn btn-success" })
     <table id="components-table"></table>
 </div>
 
 @section Scripts {
     <script type="text/javascript" charset="utf8" src="~/DataTables/datatables.js"></script>
     <script type="text/javascript" charset="utf8" src="~/js/grid.js"></script>
-    <script type="text/javascript" charset="utf8" src="~/js/management.js"></script>
+    <script type="text/javascript" charset="utf8" src="~/js/components.js"></script>
 }

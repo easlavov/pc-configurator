@@ -17,5 +17,10 @@
             var list = base.dbSet.Include(c => c.ComponentType).ToList();
             return list.AsQueryable();
         }
+
+        public override IQueryable<Component> GetAllById(params long[] ids)
+        {
+            return base.GetAllById().Include(cmp => cmp.ComponentType);            
+        }
     }
 }

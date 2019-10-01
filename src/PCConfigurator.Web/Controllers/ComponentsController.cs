@@ -10,14 +10,14 @@ using PCConfigurator.Web.Models;
 
 namespace PCConfigurator.Web.Controllers
 {
-    public class ManagementController : Controller
+    public class ComponentsController : BaseController
     {
         private readonly EntityManager<ComponentType> componentTypesManager;
-        private readonly ComponentManager componentsManager;
+        private readonly ComponentsManager componentsManager;
 
-        public ManagementController(
+        public ComponentsController(
             EntityManager<ComponentType> componentTypesManager,
-            ComponentManager componentsManager)
+            ComponentsManager componentsManager)
         {
             if (componentTypesManager == null)
                 throw new ArgumentNullException(nameof(componentTypesManager));
@@ -82,6 +82,14 @@ namespace PCConfigurator.Web.Controllers
             return Ok();
         }
 
+        [HttpGet]
+        public IActionResult LoadAllComponents()
+        {
+            var components = componentsManager.LoadAll();
+            return base.JsonContent(components);
+        }
+
+        [HttpGet]
         public IActionResult LoadComponents(DataTablesRequest dtRequest)
         {
             var result = componentsManager.Load(
@@ -93,9 +101,8 @@ namespace PCConfigurator.Web.Controllers
                 recordsFiltered = result.TotalItems,
                 recordsTotal = result.TotalItems
             };
-
-            var ser = JsonConvert.SerializeObject(response, new JsonSerializerSettings { ReferenceLoopHandling = ReferenceLoopHandling.Ignore, ContractResolver = new CamelCasePropertyNamesContractResolver() });
-            return this.Content(ser, "application/json");
+            
+            return base.JsonContent(response);
         }
 
         [HttpPost]
