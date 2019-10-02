@@ -3,8 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-
-    using PCConfigurator.Application.Components;
+    
     using PCConfigurator.Application.Repositories;
     using PCConfigurator.Core;
 
@@ -20,32 +19,26 @@
             this.compRepo = compRepo ?? throw new ArgumentNullException(nameof(compRepo));
         }
 
-        public Configuration Add(ConfigurationWriteModel model)
+        public ConfigurationViewModel Add(ConfigurationWriteModel model)
         {
             var configuration = BuildFromWriteModel(model);
-            return repository.Add(configuration);
+            var entity = repository.Add(configuration);
+            return ConfigurationViewModel.From(configuration);
         }
 
-        public Configuration Update(ConfigurationWriteModel model)
+        public ConfigurationViewModel Update(ConfigurationWriteModel model)
         {
             var configuration = repository.GetById(model.Id);
             configuration.ConfigurationComponents = ExtractValidComponents(model);
             configuration.Name = model.Name;
-            return repository.Update(configuration);
+            var updated = repository.Update(configuration);
+            return ConfigurationViewModel.From(updated);
         }
 
         public ConfigurationViewModel GetById(long id)
         {
             var configuration = repository.GetById(id);
-            var viewModel = new ConfigurationViewModel
-            {
-                Components = configuration.ConfigurationComponents.Select(
-                        x => new ComponentViewModel { Id = x.ComponentId, Quantity = x.Quantity }),
-                Id = id,
-                Name = configuration.Name
-            };
-
-            return viewModel;
+            return ConfigurationViewModel.From(configuration);
         }
 
         private Configuration BuildFromWriteModel(ConfigurationWriteModel model)
