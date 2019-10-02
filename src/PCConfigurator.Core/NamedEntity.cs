@@ -18,7 +18,7 @@
 
             set
             {
-                if (string.IsNullOrEmpty(name))
+                if (string.IsNullOrEmpty(value))
                     throw new ArgumentNullException(nameof(Name));
 
                 name = value;
