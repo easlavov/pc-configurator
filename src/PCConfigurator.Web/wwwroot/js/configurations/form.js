@@ -172,6 +172,7 @@ function gatherFormData() {
         var id = $component.find('.component-select').val();
         if (!id) return;
         var quantity = $component.find('.quantity').val();
+        if (quantity == 0) return;
         selectedComponents.push({
             id: id,
             quantity: quantity
