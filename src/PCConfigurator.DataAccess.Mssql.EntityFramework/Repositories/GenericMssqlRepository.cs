@@ -22,7 +22,7 @@
             dbSet = context.Set<T>();
         }
 
-        public T GetById(long id)
+        public virtual T GetById(long id)
         {
             return dbSet.Find(id);
         }
@@ -40,6 +40,13 @@
         public T Add(T entity)
         {
             var entry = dbSet.Add(entity);
+            context.SaveChanges();
+            return entry.Entity;
+        }
+
+        public T Update(T entity)
+        {
+            var entry = dbSet.Update(entity);
             context.SaveChanges();
             return entry.Entity;
         }

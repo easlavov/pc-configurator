@@ -23,7 +23,7 @@
             : this(id, name, new List<ConfigurationComponent>())
         { }
 
-        public string Name { get; }
+        public string Name { get; set; }
 
         //public IList<Component> Components
         //{

@@ -31,12 +31,21 @@
             drawCallback: function () {
                 $(`${config.tableId} .delete-entity`).click(function (event, a, v, c) {
                     var id = $(this).data('id');
-                    console.log(id);
 
                     $.post(config.deleteUrl, { id: id }, function () {
                         table.ajax.reload();
                     });
                 });
+
+                if (config.editUrl) {
+                    $(`${config.tableId} .edit-entity`).click(function (event, a, v, c) {
+                        var id = $(this).data('id');
+
+                        window.location = config.editUrl + `?id=${id}`;                        
+                    });
+                }
+
+                
             }
         });
     }

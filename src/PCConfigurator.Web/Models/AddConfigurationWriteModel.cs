@@ -11,5 +11,7 @@ namespace PCConfigurator.Web.Models
         public string Name { get; set; }
 
         public ComponentViewModel[] Components { get; set; }
+
+        public ComponentViewModel[] SelectedComponents { get; set; }
     }
 }

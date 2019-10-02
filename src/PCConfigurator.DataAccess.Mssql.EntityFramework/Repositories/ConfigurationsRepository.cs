@@ -14,6 +14,13 @@ namespace PCConfigurator.DataAccess.Mssql.EntityFramework.Repositories
         {
         }
 
+        public override Configuration GetById(long id)
+        {
+            return base.dbSet.Include(
+                $"{nameof(Configuration.ConfigurationComponents)}.{nameof(ConfigurationComponent.Component)}")
+                .SingleOrDefault(c => c.Id == id);
+        }
+
         public override IQueryable<Configuration> GetAll()
         {
             var list = base.dbSet.Include($"{nameof(Configuration.ConfigurationComponents)}.{nameof(ConfigurationComponent.Component)}")

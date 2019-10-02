@@ -14,6 +14,8 @@
 
         T Add(T entity);
 
+        T Update(T entity);
+
         void Delete(long id);
     }
 }

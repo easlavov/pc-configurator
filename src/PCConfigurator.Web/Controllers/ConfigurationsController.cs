@@ -58,15 +58,44 @@
         {
             if (!this.ModelState.IsValid)
             {
-                //model.ComponentTypes = componentTypesManager.LoadAll()
-                //.Select(ct => new SelectListItem { Text = ct.Name, Value = ct.Id.ToString(), Selected = ct.Id == model.SelectedComponentTypeId });
-                return this.View(model);
+                return this.BadRequest();
             }
 
             configurationsManager.Add(new ConfigurationWriteModel { Name = model.Name, Components = model.Components });
-            //componentsManager.Add(new ComponentWriteModel { Name = model.Name, ComponentTypeId = model.SelectedComponentTypeId, Price = model.Price });
 
-            return this.RedirectToAction(nameof(Index));
+            return this.Ok();
+        }
+
+        [HttpGet]
+        public IActionResult Edit(long id)
+        {
+            ViewBag.Id = id;
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Edit(AddConfigurationWriteModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.BadRequest();
+            }
+
+            configurationsManager.Update(new ConfigurationWriteModel
+            {
+                Id = model.Id,
+                Components = model.Components,
+                Name = model.Name
+            });
+
+            return this.Ok();
+        }
+
+        [HttpGet]
+        public IActionResult LoadById(long id)
+        {
+            var vm = configurationsManager.GetById(id);
+            return base.JsonContent(vm);
         }
 
         [HttpPost]

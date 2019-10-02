@@ -3,6 +3,7 @@
         tableId: "#configurations-table",
         dataUrl: 'Configurations/Load',
         deleteUrl: 'Configurations/Delete',
+        editUrl: 'Configurations/Edit',
         columns: [
             {
                 data: function (row, type, set) {
