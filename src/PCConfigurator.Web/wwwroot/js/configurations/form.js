@@ -1,4 +1,4 @@
-﻿var counter = 0;
+﻿var configurationId = 0;
 var $components = [];
 var types = [];
 var componentsByType = [];
@@ -12,7 +12,6 @@ var $totalPrice = $('#total-price')
 function addNewComponent(comp) {
     var $container = $('<div>');
     $container.addClass('form-group row');
-    $container.data('row', counter);
 
     var $typeSelect = generateTypeSelect(comp);
 
@@ -30,6 +29,7 @@ function addNewComponent(comp) {
     var $individualPrice = $('<input>');
     $individualPrice.addClass('individual-price');
     $individualPrice.val(0);
+    $individualPrice.data('price', 0);
     $individualPrice.text('N/A');
     $individualPrice.prop('disabled', true);
 
@@ -111,7 +111,10 @@ function addNewComponent(comp) {
     function calculateTotalPrice() {
         var total = 0;
         $('.accumulated-price').each(function () {
-            total += parseInt($(this).val());
+            var parsed = parseInt($(this).val());
+            if (isNaN(parsed)) return;
+
+            total += parsed;
         });
 
         $totalPrice.empty();
@@ -163,3 +166,23 @@ $('#add-component-btn').click(function (event) {
     addNewComponent();
 })
 
+function gatherFormData() {
+    var selectedComponents = []
+    $components.forEach(function ($component) {
+        var id = $component.find('.component-select').val();
+        if (!id) return;
+        var quantity = $component.find('.quantity').val();
+        selectedComponents.push({
+            id: id,
+            quantity: quantity
+        });
+    });
+
+    var name = $nameBox.val();
+
+    return {
+        id: configurationId,
+        name: name,
+        components: selectedComponents
+    }
+}

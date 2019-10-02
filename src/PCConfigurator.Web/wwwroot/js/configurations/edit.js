@@ -1,6 +1,4 @@
-﻿var configurationId;
-
-function loadConfiguration(id) {
+﻿function loadConfiguration(id) {
     $.getJSON("/Components/LoadAllComponents").done(function (response) {
 
         componentsByType = response;
@@ -28,20 +26,14 @@ function loadConfiguration(id) {
 $form.submit(function (e) {
     e.preventDefault();
 
-    var selectedComponents = []
-    $components.forEach(function ($component) {
-        var id = $component.find('.component-select').val();
-        if (!id) return;
-        var quantity = $component.find('.quantity').val();
-        selectedComponents.push({
-            id: id,
-            quantity: quantity
-        });
-    });
+    var formData = gatherFormData();
 
-    var name = $nameBox.val();
-
-    $.post('Edit', { name: name, components: selectedComponents, id: configurationId }).done(function () {
+    if (formData.components.length == 0) {
+        alert('You must select at least one component to save the configuration!');
+        return;
+    }
+    
+    $.post('Edit', { name: formData.name, components: formData.components, id: formData.id }).done(function () {
         window.location = '/'
     });
 });
