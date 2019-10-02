@@ -4,7 +4,6 @@ function loadConfiguration(id) {
     $.getJSON("/Components/LoadAllComponents").done(function (response) {
 
         componentsByType = response;
-        //componentTypes = _.chain(components).pluck('componentType').uniq(function (x) { return x.id; }).value();
         types = _.pluck(componentsByType, 'Key')
 
         var components = _.chain(componentsByType).pluck('Value').flatten().value();
@@ -22,9 +21,7 @@ function loadConfiguration(id) {
             response.components.forEach(function (comp) {
                 addNewComponent(comp);
             });
-        });
-
-        
+        });        
     });
 }
 

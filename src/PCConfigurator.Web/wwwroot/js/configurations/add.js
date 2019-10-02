@@ -1,7 +1,6 @@
 ﻿$.getJSON("/Components/LoadAllComponents").done(function (response) {      
 
     componentsByType = response;
-    //componentTypes = _.chain(components).pluck('componentType').uniq(function (x) { return x.id; }).value();
     types = _.pluck(componentsByType, 'Key')
 
     var components = _.chain(componentsByType).pluck('Value').flatten().value();
@@ -19,12 +18,18 @@ $form.submit(function (e) {
     var selectedComponents = []
     $components.forEach(function ($component) {
         var id = $component.find('.component-select').val();
+        if (!id) return;
         var quantity = $component.find('.quantity').val();
         selectedComponents.push({
             id: id,
             quantity: quantity
         });
     });
+
+    if (selectedComponents.length == 0) {
+        alert('You must select at least one component to save the configuration!');
+        return;
+    }
 
     var name = $nameBox.val();
 
