@@ -29,6 +29,6 @@ $form.submit(function (e) {
     var name = $nameBox.val();
 
     $.post('Add', { name: name, components: selectedComponents }).done(function () {
-        console.log('success!')
+        window.location = '/'
     });
 });
