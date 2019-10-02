@@ -3,7 +3,6 @@
     using PCConfigurator.Core;
 
     using Microsoft.EntityFrameworkCore;
-    using System;
 
     public class PCConfiguratorDBContext : DbContext
     {
@@ -23,9 +22,10 @@
             AddComponentType(modelBuilder);
             AddComponent(modelBuilder);
             AddConfiguration(modelBuilder);
+            SeedData(modelBuilder);
         }
 
-        private static void AddComponentType(ModelBuilder modelBuilder)
+        private void AddComponentType(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ComponentType>().ToTable("component_types");
             modelBuilder.Entity<ComponentType>()
@@ -33,14 +33,7 @@
             modelBuilder.Entity<ComponentType>()
                 .Property(t => t.Name).HasColumnName("name").IsRequired();
             modelBuilder.Entity<ComponentType>()
-                .HasKey(t => t.Id);
-           
-            modelBuilder.Entity<ComponentType>().HasData(
-                    new ComponentType(1, "Motherboard"),
-                    new ComponentType(2, "CPU"),
-                    new ComponentType(3, "GPU"),
-                    new ComponentType(4, "RAM")
-                );
+                .HasKey(t => t.Id);            
         }
 
         private void AddComponent(ModelBuilder modelBuilder)
@@ -59,47 +52,8 @@
                .WithMany(c => c.Components)
                .OnDelete(DeleteBehavior.Cascade);
 
-
             modelBuilder.Entity<Component>()
-                .Property(t => t.Price).HasColumnName("price").IsRequired();
-            
-            modelBuilder.Entity<Component>().HasData(
-                    new 
-                    { 
-                        Id = 1l,
-                        ComponentTypeId = 1l,
-                        Name = "MSI Z390-A PRO",
-                        Price = 200m
-                    },
-                    new
-                    {
-                        Id = 2l,
-                        ComponentTypeId = 2l,
-                        Name = "AMD FX-8150",
-                        Price = 150m
-                    },
-                    new 
-                    {
-                        Id = 3l,
-                        ComponentTypeId = 2l,
-                        Name = "Intel i5-6500T",
-                        Price = 180m
-                    },
-                    new
-                    {
-                        Id = 4l,
-                        ComponentTypeId = 3l,
-                        Name = "GTX 960",
-                        Price = 230m
-                    },
-                    new
-                    {
-                        Id = 5l,
-                        ComponentTypeId = 4l,
-                        Name = "Corsair Vengeance LED 16Gb (2x8GB) DDR4 3000MHz",
-                        Price = 230m
-                    }
-                );
+                .Property(t => t.Price).HasColumnName("price").IsRequired();            
         }
 
         private void AddConfiguration(ModelBuilder modelBuilder)
@@ -108,8 +62,8 @@
 
             modelBuilder.Entity<Configuration>().Property(t => t.Id).HasColumnName("id").UseIdentityColumn();
             modelBuilder.Entity<Configuration>().HasKey(t => t.Id);
+
             modelBuilder.Entity<Configuration>().Property(t => t.Name).HasColumnName("name").IsRequired();
-            //modelBuilder.Entity<Configuration>().Ignore(t => t.Components);
 
             modelBuilder.Entity<ConfigurationComponent>().ToTable("configurations_components");
             modelBuilder.Entity<ConfigurationComponent>().Property(t => t.ComponentId).HasColumnName("component_id");
@@ -117,6 +71,54 @@
             modelBuilder.Entity<ConfigurationComponent>().Property(t => t.Quantity).HasColumnName("quantity");
             modelBuilder.Entity<ConfigurationComponent>().HasKey(
                     cc => new { component_id = cc.ComponentId, configuration_id = cc.ConfigurationId });
+        }
+
+        private void SeedData(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<ComponentType>().HasData(
+                    new ComponentType(1, "Motherboard"),
+                    new ComponentType(2, "CPU"),
+                    new ComponentType(3, "GPU"),
+                    new ComponentType(4, "RAM")
+                );
+
+            modelBuilder.Entity<Component>().HasData(
+                    new
+                    {
+                        Id = 1L,
+                        ComponentTypeId = 1L,
+                        Name = "MSI Z390-A PRO",
+                        Price = 200m
+                    },
+                    new
+                    {
+                        Id = 2L,
+                        ComponentTypeId = 2L,
+                        Name = "AMD FX-8150",
+                        Price = 150m
+                    },
+                    new
+                    {
+                        Id = 3L,
+                        ComponentTypeId = 2L,
+                        Name = "Intel i5-6500T",
+                        Price = 180m
+                    },
+                    new
+                    {
+                        Id = 4L,
+                        ComponentTypeId = 3L,
+                        Name = "GTX 960",
+                        Price = 230m
+                    },
+                    new
+                    {
+                        Id = 5L,
+                        ComponentTypeId = 4L,
+                        Name = "Corsair Vengeance LED 16Gb (2x8GB) DDR4 3000MHz",
+                        Price = 230m
+                    }
+                );
         }
     }
 }

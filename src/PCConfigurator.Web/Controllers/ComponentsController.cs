@@ -10,7 +10,7 @@
     using PCConfigurator.Application.Components;
     using PCConfigurator.Application.Exceptions;
     using PCConfigurator.Core;
-
+    using PCConfigurator.Web.ContractResolvers;
     using PCConfigurator.Web.Models;
     using PCConfigurator.Web.Models.View;
 

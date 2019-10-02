@@ -1,12 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PCConfigurator.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace PCConfigurator.DataAccess.Mssql.EntityFramework.Repositories
+﻿namespace PCConfigurator.DataAccess.Mssql.EntityFramework.Repositories
 {
+    using System.Linq;
+
+    using Microsoft.EntityFrameworkCore;
+
+    using PCConfigurator.Core;
+
     public class ConfigurationsRepository : GenericMssqlRepository<Configuration>
     {
         public ConfigurationsRepository(DbContext context) 

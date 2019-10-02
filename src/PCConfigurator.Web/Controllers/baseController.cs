@@ -1,27 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using PCConfigurator.Web.Models;
-
-namespace PCConfigurator.Web.Controllers
+﻿namespace PCConfigurator.Web.Controllers
 {
-    class DictionaryAsArrayResolver : DefaultContractResolver
-    {
-        protected override JsonContract CreateContract(Type objectType)
-        {
-            if (objectType.GetInterfaces().Any(i => i == typeof(IDictionary<,>) ||
-                (i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IDictionary<,>))))
-            {
-                return base.CreateArrayContract(objectType);
-            }
+    using Microsoft.AspNetCore.Mvc;
 
-            return base.CreateContract(objectType);
-        }
-    }
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Serialization;
 
     public class BaseController : Controller
     {
@@ -42,20 +24,5 @@ namespace PCConfigurator.Web.Controllers
 
             return this.Content(serialzied, "application/json");
         }
-
-        //protected DataTablesResponse HandleDataTablesRequest(DataTablesRequest dtRequest)
-        //{
-        //    var result = componentTypesManager.Load(
-        //        new PageRequest { Skip = dtRequest.Start, Take = dtRequest.Length });
-        //    var response = new DataTablesResponse
-        //    {
-        //        data = result.Items.ToArray(),
-        //        draw = dtRequest.Draw,
-        //        recordsFiltered = result.TotalItems,
-        //        recordsTotal = result.TotalItems
-        //    };
-
-        //    return response;
-        //}
     }
 }

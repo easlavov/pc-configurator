@@ -1,7 +1,8 @@
 ﻿namespace PCConfigurator.Web.Models.View
 {
-    using PCConfigurator.Core;
     using System.Collections.Generic;
+
+    using PCConfigurator.Core;
 
     public class ComponentTypesIndexViewModel
     {
