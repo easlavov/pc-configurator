@@ -1,18 +1,26 @@
-using PCConfigurator.Web.Extensions;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using PCConfigurator.DataAccess.Mssql.EntityFramework;
-using Microsoft.EntityFrameworkCore;
-using PCConfigurator.Application;
-using PCConfigurator.Application.Repositories;
-using PCConfigurator.DataAccess.Mssql.EntityFramework.Repositories;
-using PCConfigurator.Core;
-
 namespace PCConfigurator.Web
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+
+    using Microsoft.EntityFrameworkCore;
+
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+
+    using PCConfigurator.Application;
+    using PCConfigurator.Application.Components;
+    using PCConfigurator.Application.Configurations;
+    using PCConfigurator.Application.Repositories;
+
+    using PCConfigurator.Core;
+
+    using PCConfigurator.DataAccess.Mssql.EntityFramework;
+    using PCConfigurator.DataAccess.Mssql.EntityFramework.Repositories;
+
+    using PCConfigurator.Web.Extensions;    
+
     public class Startup
     {
         private const string ConnectionStringName = @"PCConfiguratorConnection";

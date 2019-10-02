@@ -1,11 +1,7 @@
-﻿using PCConfigurator.Core;
-using System;
-using System.Collections.Generic;
-
-using System.Text;
-
-namespace PCConfigurator.Application
+﻿namespace PCConfigurator.Application.Configurations
 {
+    using PCConfigurator.Application.Components;
+
     public class ConfigurationWriteModel
     {
         public long Id { get; set; }

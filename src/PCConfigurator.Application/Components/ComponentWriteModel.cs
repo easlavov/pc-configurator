@@ -1,4 +1,4 @@
-﻿namespace PCConfigurator.Application
+﻿namespace PCConfigurator.Application.Components
 {
     public class ComponentWriteModel
     {

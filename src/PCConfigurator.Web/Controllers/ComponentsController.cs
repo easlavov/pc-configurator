@@ -1,15 +1,18 @@
-﻿using System;
-using System.Linq;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using PCConfigurator.Application;
-using PCConfigurator.Core;
-using PCConfigurator.Web.Models;
-
-namespace PCConfigurator.Web.Controllers
+﻿namespace PCConfigurator.Web.Controllers
 {
+    using System;
+    using System.Linq;
+
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.AspNetCore.Mvc.Rendering;
+
+    using PCConfigurator.Application;
+    using PCConfigurator.Application.Components;
+
+    using PCConfigurator.Core;
+
+    using PCConfigurator.Web.Models;
+
     public class ComponentsController : BaseController
     {
         private readonly EntityManager<ComponentType> componentTypesManager;

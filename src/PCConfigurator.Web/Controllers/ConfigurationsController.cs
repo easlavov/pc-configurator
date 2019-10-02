@@ -2,10 +2,15 @@
 {
     using System;
     using System.Diagnostics;
-    using Microsoft.AspNetCore.Mvc;
-    using PCConfigurator.Application;
-    using PCConfigurator.Web.Models;
     using System.Linq;
+
+    using Microsoft.AspNetCore.Mvc;
+
+    using PCConfigurator.Application;
+    using PCConfigurator.Application.Components;
+    using PCConfigurator.Application.Configurations;
+
+    using PCConfigurator.Web.Models;
 
     public class ConfigurationsController : BaseController
     {

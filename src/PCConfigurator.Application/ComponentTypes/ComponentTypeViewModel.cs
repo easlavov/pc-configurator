@@ -1,4 +1,4 @@
-﻿namespace PCConfigurator.Application
+﻿namespace PCConfigurator.Application.ComponentTypes
 {
     public class ComponentTypeViewModel
     {

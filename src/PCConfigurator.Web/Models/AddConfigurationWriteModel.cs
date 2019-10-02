@@ -1,8 +1,9 @@
-﻿using PCConfigurator.Application;
-using System.ComponentModel.DataAnnotations;
-
-namespace PCConfigurator.Web.Models
+﻿namespace PCConfigurator.Web.Models
 {
+    using System.ComponentModel.DataAnnotations;
+
+    using PCConfigurator.Application.Components;
+
     public class AddConfigurationWriteModel
     {
         public long Id { get; set; }

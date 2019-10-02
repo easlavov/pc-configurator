@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
-
-namespace PCConfigurator.Application
+﻿namespace PCConfigurator.Application.Configurations
 {
+    using System.Collections.Generic;
+
+    using PCConfigurator.Application.Components;
+
     public class ConfigurationViewModel
     {
         public long Id { get; set; }

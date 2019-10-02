@@ -1,12 +1,13 @@
-﻿using PCConfigurator.Application.Repositories;
-using PCConfigurator.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace PCConfigurator.Application
+﻿namespace PCConfigurator.Application.Components
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+
+    using PCConfigurator.Application.ComponentTypes;
+    using PCConfigurator.Application.Repositories;
+    using PCConfigurator.Core;
+
     public class ComponentsManager : EntityManager<Component>
     {
         private readonly Repository<ComponentType> compTypeRepo;

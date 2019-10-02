@@ -1,5 +1,7 @@
-﻿namespace PCConfigurator.Application
+﻿namespace PCConfigurator.Application.Components
 {
+    using PCConfigurator.Application.ComponentTypes;
+
     public class ComponentViewModel
     {
         public long Id { get; set; }
