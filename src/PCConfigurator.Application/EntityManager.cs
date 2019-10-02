@@ -18,6 +18,11 @@
             this.repository = repository;
         }
 
+        public TEntity GetById(long id)
+        {
+            return repository.GetById(id);
+        }
+
         public IEnumerable<TEntity> LoadAll()
         {
             return repository.GetAll();

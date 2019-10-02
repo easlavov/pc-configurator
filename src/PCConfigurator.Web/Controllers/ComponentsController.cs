@@ -79,6 +79,45 @@
             return this.RedirectToAction(nameof(Index));
         }
 
+        [HttpGet]
+        public IActionResult EditComponent(long id)
+        {
+            var component = componentsManager.GetById(id);
+            var viewModel = new AddComponentViewModel
+            {
+                Id = component.Id,
+                SelectedComponentTypeId = component.ComponentTypeId,
+                Name = component.Name,
+                Price = component.Price,
+                ComponentTypes = componentTypesManager.LoadAll().Select(ct => new SelectListItem { Text = ct.Name, Value = ct.Id.ToString() }),
+                
+            };
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult EditComponent([FromForm]AddComponentViewModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                model.ComponentTypes = componentTypesManager.LoadAll()
+                    .Select(ct => new SelectListItem 
+                        { Text = ct.Name, Value = ct.Id.ToString(), Selected = ct.Id == model.SelectedComponentTypeId });
+                return this.View(model);
+            }
+
+            componentsManager.Update(new ComponentWriteModel 
+            {
+                Id = model.Id,
+                Name = model.Name, 
+                ComponentTypeId = model.SelectedComponentTypeId, 
+                Price = model.Price 
+            });
+
+            return this.RedirectToAction(nameof(Index));
+        }
+
         [HttpPost]
         public IActionResult DeleteComponentType(long id)
         {

@@ -43,11 +43,21 @@
             return byType;
         }
 
-        public Component Add(ComponentWriteModel entity)
+        public Component Add(ComponentWriteModel model)
         {
-            var selectedComponentType = compTypeRepo.GetById(entity.ComponentTypeId);
-            var component = new Component(0, selectedComponentType, entity.Name, entity.Price);
+            var selectedComponentType = compTypeRepo.GetById(model.ComponentTypeId);
+            var component = new Component(0, selectedComponentType, model.Name, model.Price);
             return repository.Add(component);
+        }
+
+        public Component Update(ComponentWriteModel model)
+        {
+            var component = repository.GetById(model.Id);
+            component.Name = model.Name;
+            component.ComponentTypeId = model.ComponentTypeId;
+            component.Price = model.Price;
+
+            return repository.Update(component);
         }
 
         public override void Delete(long id)

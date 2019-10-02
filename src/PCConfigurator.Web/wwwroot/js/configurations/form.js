@@ -66,7 +66,7 @@ function addNewComponent(comp) {
     $componentSelect.change(function (a, b, c) {
         var selectedComponent = $(this).val();
         var individualPrice = componentsPrice[selectedComponent];
-        $individualPrice.data('price', individualPrice | 0);
+        $individualPrice.data('price', individualPrice || 0);
         $individualPrice.val(individualPrice);
         $individualPrice.trigger('change');
     });
@@ -113,7 +113,7 @@ function addNewComponent(comp) {
     function calculateTotalPrice() {
         var total = 0;
         $('.accumulated-price').each(function () {
-            var parsed = parseInt($(this).val());
+            var parsed = parseFloat($(this).val());
             if (isNaN(parsed)) return;
 
             total += parsed;
@@ -124,8 +124,8 @@ function addNewComponent(comp) {
     }
 
     function recalculateAccumulatedPrice() {
-        var individualPrice = parseInt($individualPrice.data('price'));
-        var quantity = parseInt($quantitySelector.val());
+        var individualPrice = parseFloat($individualPrice.data('price'));
+        var quantity = parseFloat($quantitySelector.val());
         var accumulatedPrice = individualPrice * quantity;
         $accumulatedPrice.val(accumulatedPrice);
         $accumulatedPrice.text(accumulatedPrice);

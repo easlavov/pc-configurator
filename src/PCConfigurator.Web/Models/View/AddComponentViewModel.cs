@@ -8,6 +8,8 @@
 
     public class AddComponentViewModel
     {
+        public long Id { get; set; }
+
         public IEnumerable<SelectListItem> ComponentTypes { get; set; }
 
         [Required(AllowEmptyStrings = false)]
@@ -22,6 +24,7 @@
 
         [Required]
         [Range(minimum: 1, maximum: double.MaxValue)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:0.00}")]
         public decimal Price { get; set; }
     }
 }
