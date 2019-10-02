@@ -43,10 +43,14 @@
 
                         window.location = config.editUrl + `?id=${id}`;                        
                     });
-                }
-
-                
-            }
+                }               
+            },
+            language: {
+                loadingRecords: '&nbsp;',
+                processing: '<div class="spinner"></div>'
+            },
+            searching: false,
+            ordering: false
         });
     }
 
