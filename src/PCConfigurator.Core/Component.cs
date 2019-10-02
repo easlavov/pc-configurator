@@ -5,6 +5,8 @@
 
     public class Component : NamedEntity
     {
+        private decimal price;
+
         public Component(long id, ComponentType componentType, string name, decimal price) : 
             base(id, name)
         {
@@ -12,10 +14,7 @@
                 throw new ArgumentNullException(nameof(componentType));
 
             if (string.IsNullOrEmpty(name))
-                throw new ArgumentNullException(nameof(name));
-
-            if (price < 0)
-                throw new ArgumentOutOfRangeException($"{nameof(price)} must be a non-negative value!");
+                throw new ArgumentNullException(nameof(name));            
 
             ComponentType = componentType;
             Name = name;
@@ -33,7 +32,18 @@
 
         public virtual ComponentType ComponentType { get; set; }
         
-        public decimal Price { get; }
+        public decimal Price 
+        {
+            get => price;
+
+            set
+            {
+                if (value < 0)
+                    throw new ArgumentOutOfRangeException($"{nameof(price)} must be a non-negative value!");
+
+                price = value;
+            }
+        }
 
         public override bool Equals(object obj)
         {
