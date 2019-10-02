@@ -2,6 +2,20 @@
 {
     public class ConfigurationComponent
     {
+        public ConfigurationComponent(Component component, int quantity)
+        {
+            Component = component;
+            Quantity = quantity;
+        }
+
+        private ConfigurationComponent(
+            long configurationId, long componentId, int quantity)
+        {
+            ConfigurationId = configurationId;
+            ComponentId = componentId;
+            Quantity = quantity;
+        }
+
         public long ConfigurationId { get; set; }
         public virtual Configuration Configuration { get; set; }
 

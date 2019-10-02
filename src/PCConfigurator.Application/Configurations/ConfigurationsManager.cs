@@ -62,8 +62,8 @@
             var configComponents = new List<ConfigurationComponent>();
             foreach (var item in components)
             {
-                int quantity = model.Components.First(cmp => cmp.Id == item.Id).Quantity;
-                var cfgCmp = new ConfigurationComponent { ComponentId = item.Id, Quantity = quantity };
+                var quantity = model.Components.First(cmp => cmp.Id == item.Id).Quantity;
+                var cfgCmp = new ConfigurationComponent(item, quantity);
                 configComponents.Add(cfgCmp);
             }
 
