@@ -1,4 +1,5 @@
-﻿$(document).ready(function () {
+﻿'use strict';
+$(document).ready(function () {
     grid.load({
         tableId: "#component-types-table",
         dataUrl: 'Components/LoadComponentTypes',

@@ -1,4 +1,6 @@
-﻿function loadConfiguration(id) {
+﻿'use strict';
+
+function loadConfiguration(id) {
     $.getJSON("/Components/LoadAllComponents").done(function (response) {
 
         componentsByType = response;

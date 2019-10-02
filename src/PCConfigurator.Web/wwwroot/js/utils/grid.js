@@ -1,5 +1,6 @@
-﻿var grid = (function () {
-    'use strict';
+﻿'use strict';
+
+var grid = (function () {
 
     var requiredColumns = [
         { data: "id", title: "Id" },
@@ -10,8 +11,8 @@
         data: null,
         title: "Actions",
         render: function (data, type, row) {
-            var editButton = `<button class="btn btn-primary edit-entity" disabled data-id=${data.id}>Edit</button>`;
-            var deleteButton = `<button class="btn btn-danger delete-entity" disabled data-id=${data.id}>Delete</button>`;
+            var editButton = `<button class="btn btn-primary edit-entity" data-id=${data.id}>Edit</button>`;
+            var deleteButton = `<button class="btn btn-danger delete-entity" data-id=${data.id}>Delete</button>`;
             return editButton + deleteButton;
         }
     };
@@ -38,7 +39,6 @@
                             table.ajax.reload();
                         });
                     });
-                    $button.prop('disabled', false);
                 } else {
                     var $button = $(`${config.tableId} .delete-entity`)
                     $button.remove();
@@ -51,7 +51,6 @@
 
                         window.location = config.editUrl + `?id=${id}`;
                     });
-                    $button.prop('disabled', false);
                 } else {
                     var $button = $(`${config.tableId} .edit-entity`)
                     $button.remove();

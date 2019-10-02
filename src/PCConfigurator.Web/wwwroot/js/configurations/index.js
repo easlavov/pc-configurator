@@ -1,4 +1,6 @@
-﻿$(document).ready(function () {
+﻿'use strict';
+
+$(document).ready(function () {
     grid.load({
         tableId: "#configurations-table",
         dataUrl: 'Configurations/Load',

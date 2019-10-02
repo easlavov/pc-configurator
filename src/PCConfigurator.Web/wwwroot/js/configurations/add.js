@@ -1,4 +1,6 @@
-﻿$.getJSON("/Components/LoadAllComponents").done(function (response) {      
+﻿'use strict';
+
+$.getJSON("/Components/LoadAllComponents").done(function (response) {      
 
     componentsByType = response;
     types = _.pluck(componentsByType, 'Key')

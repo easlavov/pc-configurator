@@ -1,4 +1,6 @@
-﻿var configurationId = 0;
+﻿'use strict';
+
+var configurationId = 0;
 var $components = [];
 var types = [];
 var componentsByType = [];
