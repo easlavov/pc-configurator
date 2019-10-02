@@ -5,25 +5,7 @@
 
 <h1>Add</h1>
 
-<form id="configuration-form" method="post">
-    <div class="form-group">
-        <label for="name"></label>
-        <input id="name" type="text" class="form-control" />
-    </div>
-
-    <div id="components-box">
-
-    </div>
-
-    <div>
-        <span id="total-price">0</span>
-    </div>
-
-    <button id="add-component-btn" type="button">Add component</button>
-
-    <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
+@Html.Partial("_Form")
 
 @section Scripts {
     <script type="text/javascript" charset="utf8" src="~/lib/underscore/underscore-min.js"></script>

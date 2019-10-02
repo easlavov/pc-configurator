@@ -11,7 +11,7 @@ var $totalPrice = $('#total-price')
 
 function addNewComponent(comp) {
     var $container = $('<div>');
-    $container.addClass('form-group');
+    $container.addClass('form-group row');
     $container.data('row', counter);
 
     var $typeSelect = generateTypeSelect(comp);
@@ -31,18 +31,30 @@ function addNewComponent(comp) {
     $individualPrice.addClass('individual-price');
     $individualPrice.val(0);
     $individualPrice.text('N/A');
+    $individualPrice.prop('disabled', true);
 
     var $accumulatedPrice = $('<input>');
     $accumulatedPrice.addClass('accumulated-price');
     $accumulatedPrice.text('N/A');
 
-    $container.append($typeSelect);
-    $container.append($componentSelect);
-    $container.append($individualPrice);
-    $container.append($quantitySelector);
-    $container.append($accumulatedPrice);
+    $accumulatedPrice.prop('disabled', true);
+
+    
+    appendToContainerInDiv($typeSelect);
+    appendToContainerInDiv($componentSelect);
+    appendToContainerInDiv($individualPrice);
+    appendToContainerInDiv($quantitySelector);
+    appendToContainerInDiv($accumulatedPrice);
 
     $componentContainer.append($container);
+
+    function appendToContainerInDiv($element) {
+        var $div = $('<div>');
+        $div.addClass('col-sm-2')
+        $div.append($element);
+        $element.addClass('form-control')
+        $container.append($div);
+    }
 
     $typeSelect.change(function (a, b, c) {
         var selectedType = $(this).val();
