@@ -11,6 +11,8 @@
     using PCConfigurator.Application.Configurations;
 
     using PCConfigurator.Web.Models;
+    using PCConfigurator.Web.Models.View;
+    using PCConfigurator.Web.Models.Write;
 
     public class ConfigurationsController : BaseController
     {

@@ -1,4 +1,4 @@
-﻿namespace PCConfigurator.Web.Models
+﻿namespace PCConfigurator.Web.Models.Write
 {
     using System.ComponentModel.DataAnnotations;
 

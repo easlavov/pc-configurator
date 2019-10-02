@@ -1,13 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using PCConfigurator.Core;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace PCConfigurator.Web.Models
+﻿namespace PCConfigurator.Web.Models.View
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+
+    using Microsoft.AspNetCore.Mvc.Rendering;
+
     public class AddComponentViewModel
     {
         public IEnumerable<SelectListItem> ComponentTypes { get; set; }

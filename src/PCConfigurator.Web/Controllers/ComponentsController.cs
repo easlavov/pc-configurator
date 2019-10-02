@@ -12,6 +12,7 @@
     using PCConfigurator.Core;
 
     using PCConfigurator.Web.Models;
+    using PCConfigurator.Web.Models.View;
 
     public class ComponentsController : BaseController
     {
