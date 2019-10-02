@@ -4,10 +4,10 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    public class Configuration : Entity
+    public class Configuration : NamedEntity
     {
         public Configuration(long id, string name, IList<ConfigurationComponent> components)
-            : base(id)
+            : base(id, name)
         {
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentNullException(nameof(name));
@@ -22,9 +22,7 @@
         private Configuration(long id, string name)
             : this(id, name, new List<ConfigurationComponent>())
         { }
-
-        public string Name { get; set; }
-
+        
         //public IList<Component> Components
         //{
         //    get => ConfigurationComponents.Select(cc => cc.Component).ToList();

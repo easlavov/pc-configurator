@@ -3,10 +3,10 @@
     using System;
     using System.Collections.Generic;
 
-    public class Component : Entity
+    public class Component : NamedEntity
     {
         public Component(long id, ComponentType componentType, string name, decimal price) : 
-            base(id)
+            base(id, name)
         {
             if (componentType == null)
                 throw new ArgumentNullException(nameof(componentType));
@@ -23,7 +23,7 @@
         }
 
         protected Component(long id, string name, decimal price)
-            : base (id)
+            : base (id, name)
         {
             Name = name;
             Price = price;
@@ -32,9 +32,7 @@
         public long ComponentTypeId { get; set; }
 
         public virtual ComponentType ComponentType { get; set; }
-
-        public string Name { get; }
-
+        
         public decimal Price { get; }
 
         public override bool Equals(object obj)

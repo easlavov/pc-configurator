@@ -3,19 +3,17 @@
     using System;
     using System.Collections.Generic;
 
-    public class ComponentType : Entity
+    public class ComponentType : NamedEntity
     {
         public ComponentType(long id, string name)
-            : base(id)
+            : base(id, name)
         {
             if (string.IsNullOrEmpty(name))
                 throw new ArgumentNullException(nameof(name));
 
             Name = name;
         }
-
-        public string Name { get; }
-
+        
         public virtual IList<Component> Components { get; set; }
 
         public override bool Equals(object obj)
