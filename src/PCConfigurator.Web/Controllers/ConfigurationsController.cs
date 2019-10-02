@@ -69,6 +69,13 @@
             return this.RedirectToAction(nameof(Index));
         }
 
+        [HttpPost]
+        public IActionResult Delete(long id)
+        {
+            configurationsManager.Delete(id);
+            return Ok();
+        }    
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
