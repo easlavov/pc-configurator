@@ -40,7 +40,7 @@
                 recordsTotal = result.TotalItems
             };
 
-            return Json(response);
+            return this.JsonContent(response);
         }
 
         [HttpGet]
@@ -63,7 +63,7 @@
                 return this.View(model);
             }
 
-            configurationsManager.Add(new ConfigurationWriteModel { Name = model.Name, Components = model.ComponentIds });
+            configurationsManager.Add(new ConfigurationWriteModel { Name = model.Name, Components = model.Components });
             //componentsManager.Add(new ComponentWriteModel { Name = model.Name, ComponentTypeId = model.SelectedComponentTypeId, Price = model.Price });
 
             return this.RedirectToAction(nameof(Index));

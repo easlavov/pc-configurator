@@ -45,7 +45,7 @@ namespace PCConfigurator.Web
             services.AddScoped<Repository<Component>, ComponentRepository>();
 
             services.AddScoped<ConfigurationsManager>();
-            services.AddScoped<Repository<Configuration>, GenericMssqlRepository<Configuration>>();
+            services.AddScoped<Repository<Configuration>, ConfigurationsRepository>();
 
             services.AddScoped<DbContext, PCConfiguratorDBContext>();
             services.UseOneTransactionPerHttpCall(System.Data.IsolationLevel.ReadCommitted);

@@ -6,7 +6,7 @@
 
     public class Configuration : Entity
     {
-        public Configuration(long id, string name, IList<Component> components)
+        public Configuration(long id, string name, IList<ConfigurationComponent> components)
             : base(id)
         {
             if (string.IsNullOrEmpty(name))
@@ -16,46 +16,46 @@
                 throw new ArgumentNullException(nameof(components));            
 
             Name = name;
-            Components = components;
+            ConfigurationComponents = components;
         }
 
         private Configuration(long id, string name)
-            : this(id, name, new List<Component>())
+            : this(id, name, new List<ConfigurationComponent>())
         { }
 
         public string Name { get; }
 
-        public IList<Component> Components
-        {
-            get => ConfigurationComponents.Select(cc => cc.Component).ToList();
+        //public IList<Component> Components
+        //{
+        //    get => ConfigurationComponents.Select(cc => cc.Component).ToList();
 
-            set
-            {
-                ThrowIfDuplicateComponentTypesAreFound(value);
-                ConfigurationComponents.Clear();
-                foreach (var component in value)
-                {
-                    ConfigurationComponents.Add(new ConfigurationComponent
-                    {
-                        Component = component,
-                        ComponentId = component.Id,
-                        Configuration = this,
-                        ConfigurationId = this.Id
-                    });
-                }
-            }
-        }
+        //    set
+        //    {
+        //        ThrowIfDuplicateComponentTypesAreFound(value);
+        //        ConfigurationComponents.Clear();
+        //        foreach (var component in value)
+        //        {
+        //            ConfigurationComponents.Add(new ConfigurationComponent
+        //            {
+        //                Component = component,
+        //                ComponentId = component.Id,
+        //                Configuration = this,
+        //                ConfigurationId = this.Id
+        //            });
+        //        }
+        //    }
+        //}
 
-        public decimal TotalPrice => Components.Sum(cmpnt => cmpnt.Price);
+        public decimal TotalPrice => ConfigurationComponents.Sum(cmpnt => cmpnt.AccumulatedPrice);
 
-        private IList<ConfigurationComponent> ConfigurationComponents { get; set; } = new List<ConfigurationComponent>();
+        public IList<ConfigurationComponent> ConfigurationComponents { get; set; } = new List<ConfigurationComponent>();
 
-        private void ThrowIfDuplicateComponentTypesAreFound(IList<Component> value)
-        {
-            var groups = value.GroupBy(cmpnt => cmpnt.ComponentType);
+        //private void ThrowIfDuplicateComponentTypesAreFound(IList<Component> value)
+        //{
+        //    var groups = value.GroupBy(cmpnt => cmpnt.ComponentType);
 
-            if (groups.Count() != value.Count)
-                throw new ArgumentException($"All items in the {nameof(Components)} list must be of unique {nameof(ComponentType)}!");
-        }
+        //    if (groups.Count() != value.Count)
+        //        throw new ArgumentException($"All items in the {nameof(Components)} list must be of unique {nameof(ComponentType)}!");
+        //}
     }
 }

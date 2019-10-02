@@ -1,5 +1,5 @@
 ﻿var counter = 0;
-var components = [];
+var $components = [];
 var types = [];
 var componentsByType = [];
 var componentsPrice = {};
@@ -42,7 +42,6 @@ function addNewComponent() {
     $container.append($accumulatedPrice);
 
     $componentContainer.append($container);
-    counter++;
 
     $typeSelect.change(function (a, b, c) {
         var selectedType = $(this).val();
@@ -100,10 +99,10 @@ function addNewComponent() {
             $option.val(component.Id);
             $option.text(component.Name);
             $componentSelect.append($option)
-        });
-
-        var k = 5;
+        });        
     }
+
+    $components.push($container);
 }
 
 function generateTypeSelect() {
@@ -142,15 +141,19 @@ $('#add-component-btn').click(function (event) {
 $form.submit(function (e) {
     e.preventDefault();
 
-    var selectedComponentsIds = []
-    var name = $nameBox.val();
-    var selects = $('.component-select')
-    selects.each(function () {
-        var val = $(this).val()
-        selectedComponentsIds.push(val);
+    var selectedComponents = []
+    $components.forEach(function ($component) {
+        var id = $component.find('.component-select').val();
+        var quantity = $component.find('.quantity').val();
+        selectedComponents.push({
+            id: id,
+            quantity: quantity
+        });
     });
+    
+    var name = $nameBox.val();    
 
-    $.post('Add', { name: name, componentIds: selectedComponentsIds }).done(function () {
+    $.post('Add', { name: name, components: selectedComponents }).done(function () {
         console.log('success!')
     });
 });

@@ -2,15 +2,17 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PCConfigurator.DataAccess.Mssql.EntityFramework;
 
 namespace PCConfigurator.DataAccess.Mssql.EntityFramework.Migrations
 {
     [DbContext(typeof(PCConfiguratorDBContext))]
-    partial class PCConfiguratorDBContextModelSnapshot : ModelSnapshot
+    [Migration("20191002073742_AddedQuantity")]
+    partial class AddedQuantity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

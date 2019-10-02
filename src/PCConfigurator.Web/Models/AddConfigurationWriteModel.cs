@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using PCConfigurator.Application;
+using System.ComponentModel.DataAnnotations;
 
 namespace PCConfigurator.Web.Models
 {
@@ -9,6 +10,6 @@ namespace PCConfigurator.Web.Models
         [Required]
         public string Name { get; set; }
 
-        public long[] ComponentIds { get; set; }
+        public ComponentViewModel[] Components { get; set; }
     }
 }

@@ -109,11 +109,12 @@
             modelBuilder.Entity<Configuration>().Property(t => t.Id).HasColumnName("id").UseIdentityColumn();
             modelBuilder.Entity<Configuration>().HasKey(t => t.Id);
             modelBuilder.Entity<Configuration>().Property(t => t.Name).HasColumnName("name").IsRequired();
-            modelBuilder.Entity<Configuration>().Ignore(t => t.Components);
+            //modelBuilder.Entity<Configuration>().Ignore(t => t.Components);
 
             modelBuilder.Entity<ConfigurationComponent>().ToTable("configurations_components");
             modelBuilder.Entity<ConfigurationComponent>().Property(t => t.ComponentId).HasColumnName("component_id");
             modelBuilder.Entity<ConfigurationComponent>().Property(t => t.ConfigurationId).HasColumnName("configuration_id");
+            modelBuilder.Entity<ConfigurationComponent>().Property(t => t.Quantity).HasColumnName("quantity");
             modelBuilder.Entity<ConfigurationComponent>().HasKey(
                     cc => new { component_id = cc.ComponentId, configuration_id = cc.ConfigurationId });
         }

@@ -27,12 +27,17 @@ namespace PCConfigurator.Web.Controllers
     {
         protected IActionResult JsonContent(object obj)
         {
+            return this.JsonContent(obj, new CamelCasePropertyNamesContractResolver());
+        }
+
+        protected IActionResult JsonContent(object obj, IContractResolver contractResolver)
+        {
             var serialzied = JsonConvert.SerializeObject(
-                obj, 
-                new JsonSerializerSettings 
-                { 
+                obj,
+                new JsonSerializerSettings
+                {
                     ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
-                    ContractResolver = new DictionaryAsArrayResolver()
+                    ContractResolver = contractResolver
                 });
 
             return this.Content(serialzied, "application/json");
