@@ -2,7 +2,6 @@
     grid.load({
         tableId: "#component-types-table",
         dataUrl: 'Components/LoadComponentTypes',
-        deleteUrl: 'Components/DeleteComponentType'
     });
 
     grid.load({
