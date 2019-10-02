@@ -7,18 +7,17 @@
     <link rel="stylesheet" type="text/css" href="~/DataTables/datatables.css">
 }
 
-<h1>Manage Components and Types</h1>
-
-
-<div>
-    <h2>Component types list</h2>    
-    <table id="component-types-table"></table>
-</div>
+<h1>Manage Components</h1>
 
 <div>
     <h2>Components list</h2>
     @Html.ActionLink("Add Component", "AddComponent", "Components", null, new { @class = "btn btn-success" })
     <table id="components-table"></table>
+</div>
+
+<div>
+    <h2>Available Component types</h2>    
+    <table id="component-types-table"></table>
 </div>
 
 @section Scripts {

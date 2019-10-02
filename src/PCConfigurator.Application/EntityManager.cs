@@ -32,7 +32,7 @@
             return page;
         }
 
-        public void Delete(long id)
+        public virtual void Delete(long id)
         {
             repository.Delete(id);
         }

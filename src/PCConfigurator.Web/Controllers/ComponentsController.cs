@@ -8,7 +8,7 @@
 
     using PCConfigurator.Application;
     using PCConfigurator.Application.Components;
-
+    using PCConfigurator.Application.Exceptions;
     using PCConfigurator.Core;
 
     using PCConfigurator.Web.Models;
@@ -112,8 +112,15 @@
         [HttpPost]
         public IActionResult DeleteComponent(long id)
         {
-            componentsManager.Delete(id);
-            return Ok();
+            try
+            {
+                componentsManager.Delete(id);
+                return Ok();
+            }
+            catch (ComponentInUseException ex)
+            {
+                return Ok(new { error = ex.Message });
+            }
         }
     }
 }

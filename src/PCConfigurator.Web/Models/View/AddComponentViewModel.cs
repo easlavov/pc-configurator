@@ -21,7 +21,7 @@
         public string Name { get; set; }
 
         [Required]
-        [Range(minimum: 0, maximum: double.MaxValue)]
+        [Range(minimum: 1, maximum: double.MaxValue)]
         public decimal Price { get; set; }
     }
 }

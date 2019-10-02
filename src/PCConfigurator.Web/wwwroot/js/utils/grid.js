@@ -35,7 +35,12 @@ var grid = (function () {
                     $button.click(function (event, a, v, c) {
                         var id = $(this).data('id');
 
-                        $.post(config.deleteUrl, { id: id }, function () {
+                        $.post(config.deleteUrl, { id: id }, function (response) {
+                            if (response.error) {
+                                alert(response.error);
+                                return;
+                            }
+
                             table.ajax.reload();
                         });
                     });

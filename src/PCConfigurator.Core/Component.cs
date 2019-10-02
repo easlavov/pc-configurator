@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
 
     public class Component : NamedEntity
     {
@@ -45,6 +46,10 @@
             }
         }
 
+        public IList<ConfigurationComponent> ConfigurationComponents { get; set; } = new List<ConfigurationComponent>();
+
+        public bool IsUsed => this.ConfigurationComponents.Any();
+
         public override bool Equals(object obj)
         {
             if (obj == null) return false;
@@ -55,8 +60,6 @@
         public override int GetHashCode()
         {
             return (int)Id * Name.Length;
-        }
-
-        private IList<ConfigurationComponent> ConfigurationComponents { get; set; } = new List<ConfigurationComponent>();
+        }        
     }
 }

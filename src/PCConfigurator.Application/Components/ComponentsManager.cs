@@ -5,6 +5,7 @@
     using System.Linq;
 
     using PCConfigurator.Application.ComponentTypes;
+    using PCConfigurator.Application.Exceptions;
     using PCConfigurator.Application.Repositories;
     using PCConfigurator.Core;
 
@@ -47,6 +48,15 @@
             var selectedComponentType = compTypeRepo.GetById(entity.ComponentTypeId);
             var component = new Component(0, selectedComponentType, entity.Name, entity.Price);
             return repository.Add(component);
+        }
+
+        public override void Delete(long id)
+        {
+            var component = repository.GetById(id);
+            if (component.IsUsed)
+                throw new ComponentInUseException();
+
+            base.Delete(id);
         }
     }
 }

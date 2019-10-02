@@ -1,11 +1,6 @@
 ﻿'use strict';
 $(document).ready(function () {
     grid.load({
-        tableId: "#component-types-table",
-        dataUrl: 'Components/LoadComponentTypes',
-    });
-
-    grid.load({
         tableId: "#components-table",
         dataUrl: 'Components/LoadComponents',
         deleteUrl: 'Components/DeleteComponent',
@@ -17,5 +12,10 @@ $(document).ready(function () {
                 title: "Type"
             }
         ]
+    });
+
+    grid.load({
+        tableId: "#component-types-table",
+        dataUrl: 'Components/LoadComponentTypes',
     });
 });
